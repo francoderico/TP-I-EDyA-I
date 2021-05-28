@@ -23,7 +23,7 @@ Operacion* operacion_crear(char *alias, char *expr, int resultado);
 /*
  * Crea una copia física de la operación.
  * */
-Operacion* operacion_copia(Operacion *op);
+Operacion* operacion_copiar(Operacion *op);
 
 /*
  * Evalúa la expresión de la operación.

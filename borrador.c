@@ -1,18 +1,11 @@
 //Para implementar la parte a) del intérprete
 //Es un borrador
 
-typedef struct _Operacion
-{
-    char *alias;
-    char *expr; //Ver si es mejor guardar la string (5 -- 2 3 +) o el árbol
-    int resultado;
-} Operacion;
-
 
 //Ver en qué archivo va y todo eso (contacto.h)
-int comparar_operacion(void *a, void *b)
+int f_operacion_comparar(void *op1, void *op2)
 {
-    return strcmp(a->alias, b->alias);
+    return operacion_comparar((Operacion*)op1, (Operacion*)op2);
 }
 
 
