@@ -1,22 +1,23 @@
 //Para implementar la parte a) del intérprete
 //Es un borrador
 
-typedef struct _Op
+typedef struct _Operacion
 {
     char *alias;
     char *expr; //Ver si es mejor guardar la string (5 -- 2 3 +) o el árbol
-} Op;
+    int resultado;
+} Operacion;
 
 
 //Ver en qué archivo va y todo eso (contacto.h)
-int comparar_op(void *a, void *b)
+int comparar_operacion(void *a, void *b)
 {
     return strcmp(a->alias, b->alias);
 }
 
 
 //Ver en qué archivo va y todo eso (contacto.h)
-void* copiar_op(void *a)
+void* copiar_operacion(void *a)
 {
     
 }
@@ -28,7 +29,7 @@ while(palabra != salir)
     {
         scanf(ALIAS)
         
-        Op *a = bstree_buscar(operaciones, ALIAS, comparar_op); //Está bien, porque comparo solo los ->alias
+        Operacion *a = bstree_buscar(operaciones, ALIAS, comparar_op); //Está bien, porque comparo solo los ->alias
         
         //imprimo
     }
@@ -36,7 +37,7 @@ while(palabra != salir)
     {
         scanf(ALIAS)
         
-        Op *a = bstree_buscar(operaciones, ALIAS, comparar_op); //Está bien, porque comparo solo los ->alias
+        Operacion *a = bstree_buscar(operaciones, ALIAS, comparar_op); //Está bien, porque comparo solo los ->alias
         
         //evalúo
     }
@@ -44,7 +45,7 @@ while(palabra != salir)
     {
         //Si llegué acá, es porque la palabra es un ALIAS
         
-        Op *a = op_crear(); //También puedo poner *Op en el typedef y hacer directamente a = op_crear()
+        Operacion *a = op_crear(); //También puedo poner *Op en el typedef y hacer directamente a = op_crear()
         
         a->alias = palabra;
         
@@ -54,7 +55,7 @@ while(palabra != salir)
         
         operaciones = bstree_insertar(operaciones, (void*)a, copiar_op, comparar_op);
         
-        op_destruir(a);
+        operacion_destruir(a);
         
         //listo
     }
