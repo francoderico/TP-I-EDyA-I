@@ -23,6 +23,62 @@ Operacion* operacion_crear(char *alias, char *expr, int resultado)
 }
 
 
+/*
+ * Crea una copia física de la operación.
+ * */
+Operacion *operacion_copia(Operacion *op)
+{
+    Operacion* copia = operacion_crear(op->alias, op->expr, op->resultado);
+    
+    return copia;
+}
+
+
+//Sin hacer
+/*
+ * Evalúa la expresión de la operación.
+ * */
+int operacion_evaluar(Operacion *op)
+{
+    
+}
+
+
+/*
+ * Dadas 2 operaciones, las compara según su alias, siguiendo el mismo
+ * criterio que la función strcmp: devuelve
+ * -1 si op1->alias < op2->alias,
+ * 0 si op1->alias == op2->alias,
+ * 1 si op1->alias > op2->alias.
+ * */
+int operacion_comparar(Operacion *op1, Operacion *op2)
+{
+    return strcmp(op1->alias, op2->alias);
+}
+
+
+//Sin hacer
+/*
+ * Imprime la expresión de la operación, con notación infija.
+ * */
+void operacion_imprimir(Operacion *op)
+{
+    
+}
+
+
+/*
+ * Destruye la operación, liberando la memoria dinámica.
+ * */
+void operacion_destruir(Operacion *op)
+{
+    free(op->alias);
+    
+    free(op->expr);
+    
+    free(op);
+}
+
 
 
 

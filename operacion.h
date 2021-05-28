@@ -1,10 +1,14 @@
 #ifndef __OPERACION_H__
 #define __OPERACION_H__
 
+/*Archivo cabecera de la estructura operación y sus funciones.*/
 
-/*Vamos a almacenar las expresiones según su alias y su expresión (dadas
-por el usuario a través de la entrada estándar), y su resultado, que
-será calculado en el momento en el que leemos la expresión*/
+/*
+ * Vamos a almacenar las operaciones según su alias y su expresión
+ * (dadas por el usuario a través de la entrada estándar), y su
+ * resultado, que será calculado en el momento en el que leemos la
+ * expresión.
+ * */
 typedef struct _Operacion {
     char *alias;
     char *expr;                 //Ver si es mejor guardar la string (5 -- 2 3 +) o el árbol
