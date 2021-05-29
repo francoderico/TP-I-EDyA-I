@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include <math.h>
 
+
+/* No me funciona una cosita que ya estoy viendo pero lo voy subiendo*/
+
+
 /*
  * Devuelve la suma entre 2 números.
  * */
