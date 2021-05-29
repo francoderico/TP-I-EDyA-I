@@ -75,7 +75,7 @@ TablaOps tablaOps_crear() {
 /*
  * Carga un operador a la Tabla de Operadores.
 */
-void  cargaroperador (TablaOps ∗tabla, char ∗simbolo, int aridad , FuncionEvaluacion  eval )
+void  cargaroperador (TablaOps *tabla, char *simbolo, int aridad , FuncionEvaluacion  eval )
 {
 	Operador *nuevoOperador = malloc(sizeof(Operador));
 	nuevoOperador->simbolo = simbolo;
