@@ -33,6 +33,6 @@ typedef Operador *TablaOps;
 
 TablaOps tablaOps_crear();
 
-void  cargaroperador (TablaOps ∗tabla, char ∗simbolo, int aridad , FuncionEvaluacion  eval );
+void  cargaroperador (TablaOps *tabla, char *simbolo, int aridad , FuncionEvaluacion  eval );
 
 #endif /** __OPERADORES_H__ */
