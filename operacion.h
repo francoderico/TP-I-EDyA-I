@@ -11,7 +11,7 @@
  * */
 typedef struct _Operacion {
     char *alias;
-    char *expr;                 //Ver si es mejor guardar la string (5 -- 2 3 +) o el árbol
+    char *expr;                 //Ver si es mejor guardar la string (5 -- 2 3 +) o el árbol. Me inclino para el àrbol, va a estar màs simple asì para la operacion imprimir.
     int resultado;
 } Operacion;
 
