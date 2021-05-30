@@ -1,5 +1,5 @@
-#include "glist.h"
 #include "tablaops.h"
+#include "glist.h"
 #include "struct_operador.h"
 #include <stdlib.h>
 #include <stdio.h>

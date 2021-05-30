@@ -2,6 +2,7 @@
 #define __TABLAOPS_H__
 
 #include "glist.h"
+#include "struct_operador.h"
 
 /*
  * Almacenaremos la tabla de operadores como una lista de Operador
