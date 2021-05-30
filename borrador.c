@@ -10,9 +10,9 @@ int f_operacion_comparar(void *op1, void *op2)
 
 
 //Ver en qué archivo va y todo eso (contacto.h)
-void* copiar_operacion(void *a)
+void* f_operacion_copiar(void *op)
 {
-    
+    return operacion_copiar((Operacion*)op);
 }
 
 
