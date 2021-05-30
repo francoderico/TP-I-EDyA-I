@@ -54,4 +54,4 @@ void operacion_destruir(Operacion *op);
 
 
 
-#endif /** _OPERACION_H__ */
+#endif /** __OPERACION_H__ */
