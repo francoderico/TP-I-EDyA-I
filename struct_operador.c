@@ -26,7 +26,7 @@ Operador* operador_crear(char *simbolo, int aridad, FuncionEvaluacion eval)
 /*
  * Crea una copia física del operador.
  * */
-Operador* operador_copiar(Operador *op);
+Operador* operador_copiar(Operador *op)
 {
     Operador* copia = operador_crear(op->simbolo, op->aridad, op->eval);
     
@@ -41,7 +41,7 @@ Operador* operador_copiar(Operador *op);
  * 0 si op1->simbolo == op2->simbolo,
  * 1 si op1->simbolo > op2->simbolo.
  * */
-int operador_comparar(Operador *op1, Operador *op2);
+int operador_comparar(Operador *op1, Operador *op2)
 {
     return strcmp(op1->simbolo, op2->simbolo);
 }

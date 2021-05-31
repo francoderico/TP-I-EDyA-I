@@ -59,7 +59,7 @@ int modulo(int *args)
 /*
  * Devuelve el resultado de elevar un número al segundo.
  * */
-int potencia(int *args)
-{
-    return pow(args[0], args[1]);   //Chequear esto con los casts y eso.
-}
+//int potencia(int *args)
+//{
+    //return pow(args[0], args[1]);   //Chequear esto con los casts y eso.
+//}

@@ -1,6 +1,6 @@
 //#include "glist.h"
 //#include "operacion.h"
-//#include "operadores.h"
+#include "operadores.h"
 #include "struct_operador.h"
 //#include "tablaops.h"
 #include <stdlib.h>
@@ -8,10 +8,6 @@
 #include <string.h>
 
 
-int suma(int *args)
-{
-    return args[0] + args[1];
-}
 
 
 
