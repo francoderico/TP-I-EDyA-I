@@ -25,6 +25,7 @@ void tablaOps_recorrer(TablaOps tabla, FuncionVisitante visitar);
 void cargar_operador(TablaOps *tabla, char *simbolo, int aridad,
                      FuncionEvaluacion eval);
 
+int es_operador(TablaOps tabla, char *simbolo);
 
 
 
