@@ -10,26 +10,26 @@ typedef struct _Operador {
 } Operador;
 
 /*
- * Crea una nueva operación con los parámetros dados.
+ * Crea un nuevo operador con los parámetros dados.
  * */
 Operador* operador_crear(char *simbolo, int aridad, FuncionEvaluacion eval);
 
 /*
- * Crea una copia física de la operación.
+ * Crea una copia física del operador.
  * */
 Operador* operador_copiar(Operador *op);
 
 /*
- * Dadas 2 operaciones, las compara según su alias, siguiendo el mismo
+ * Dados 2 operadores, los compara según su símbolo, siguiendo el mismo
  * criterio que la función strcmp: devuelve
- * -1 si op1->alias < op2->alias, 
- * 0 si op1->alias == op2->alias,
- * 1 si op1->alias > op2->alias.
+ * -1 si op1->simbolo < op2->simbolo, 
+ * 0 si op1->simbolo == op2->simbolo,
+ * 1 si op1->simbolo > op2->simbolo.
  * */
 int operador_comparar(Operador *op1, Operador *op2);
 
 /*
- * Destruye la operación, liberando la memoria dinámica.
+ * Destruye el operador, liberando la memoria dinámica.
  * */
 void operador_destruir(Operador *op);
 
