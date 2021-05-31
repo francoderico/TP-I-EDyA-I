@@ -74,9 +74,8 @@ void cargar_operador(TablaOps *tabla, char *simbolo, int aridad,
 }
 
 /*
- *Determina si un simbolo es un operador de una tabla de operadores.
- * Si le saco lo de simbolo compila. No se me ocurre como acceder a los datos del operador  cuando almacenamos datos con *void. 
- */
+ *Determina si un simbolo es un operador de una tabla de operadores. La funciòn que està comentada funciona (muy parecida) en slist. La de abajo es lo que
+ se me ocuriò para utilizarlo con glist. Capaz hay alguna forma de mejorarla.
 
 int es_operador(TablaOps tabla, char *simbolo)
 {
@@ -88,6 +87,25 @@ int es_operador(TablaOps tabla, char *simbolo)
 		aux = aux->sig;
 		}
 	if (aux->dato->simbolo == buscar ){
+	ok=1;
+	}
+	return ok;
+}
+
+*/
+int es_operador(TablaOps tabla, char *simbolo)
+{
+	int ok = 0;
+	char *buscar;
+	buscar = simbolo;
+	TablaOps tablaaux = tabla;
+	Operador *aux;
+	*(Operador*)aux =  *(Operador*)tablaaux->dato;
+	while (aux != NULL && aux->simbolo!= buscar){
+		tablaaux = tablaaux->sig;
+		*(Operador*)aux =  *(Operador*)tablaaux->dato;
+		}
+	if (aux->simbolo == buscar ){
 	ok=1;
 	}
 	return ok;
