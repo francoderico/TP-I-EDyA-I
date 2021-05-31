@@ -73,7 +73,25 @@ void cargar_operador(TablaOps *tabla, char *simbolo, int aridad,
     operador_destruir(nuevo);
 }
 
+/*
+ *Determina si un simbolo es un operador de una tabla de operadores.
+ * Si le saco lo de simbolo compila. No se me ocurre como acceder a los datos del operador  cuando almacenamos datos con *void. 
+ */
 
+int es_operador(TablaOps tabla, char *simbolo)
+{
+	int ok = 0;
+	char *buscar;
+	TablaOps aux = tabla;
+	buscar = simbolo;
+	while (aux != NULL && aux->dato->simbolo!= buscar){
+		aux = aux->sig;
+		}
+	if (aux->dato->simbolo == buscar ){
+	ok=1;
+	}
+	return ok;
+}
 
 
 
