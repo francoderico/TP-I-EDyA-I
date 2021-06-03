@@ -7,6 +7,9 @@
 #include <stdio.h>
 #include <string.h>
 
+
+//Crea un arbol de operaciones a partir de una expresión aritmética.
+
 BTree crear_arbol_operaciones(TablaOps tabla, char *expresion)
 {
 	Pila pila = pila_crear();
@@ -43,8 +46,61 @@ destruir(pila);
 return arbolOps;
 }
 
+//Determina la precedencia de un operador. 
+//¿En donde entra el modulo? 
+
+int precedencia(char *operador){
+	int p;
+	if (!strcmp(operador, "+") || !strcmp(operador, "-") ||  !strcmp(operador, "--")){
+		p = 1;
+	}
+	else if (!strcmp(operador, "*") ||  !strcmp(operador, "/")){
+		p = 2;
+	}
+	else if (!strcmp(operador, "^")){
+		p = 3;
+	}
+	else {
+		p =4;
+	}
+	return p;
+}
 
 
+
+
+//Imprime a partir de un arbol, la expresión aritmética en inorden.
+
+void imprimir(BTree arbol){
+	if (arbol != NULL){
+		if(precedencia(arbol->dato) > precedencia (arbol->left->dato)){
+			printf("(");
+			imprimir(arbol->left);
+			printf("%s\n", arbol->dato);
+			if (precedencia(arbol->dato) > precedencia (arbol->right->dato)){
+				printf("(");
+				imprimir(arbol->right);
+				printf(")");
+			}
+			else{
+				imprimir(arbol->right);
+			}
+			printf(")");
+		}
+		else{
+			imprimir(arbol->left);
+			printf("%s\n", arbol->dato);
+			if (precedencia(arbol->dato) > precedencia (arbol->right->dato)){
+				printf("(");
+				imprimir(arbol->right);
+				printf(")");
+			}
+			else{
+				imprimir(arbol->right);
+			}
+		}
+	}
+}
 
 
 
