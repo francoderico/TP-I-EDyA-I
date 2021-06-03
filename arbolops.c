@@ -23,20 +23,20 @@ BTree crear_arbol_operaciones(TablaOps tabla, char *expresion)
 			aux = strcat(aux, *p);
 		}
 		else if(!es_operador(tabla, aux)){
-			apilar(pila, btree_unir(aux, NULL, NULL));
+			pila = apilar(pila, btree_unir(aux, NULL, NULL));
 		}
 		else if (es_operador(tabla, aux) == 1){
 			aux1 = pila->simbolo;
-			desapilar(pila);
-			apilar(pila, btree_unir(aux, aux1, NULL));	
+			pila = desapilar(pila);
+			pila = apilar(pila, btree_unir(aux, aux1, NULL));	
 			aux = "";
 		}
 		else if(es_operador(tabla,aux)== 2){
 		aux1 = pila->simbolo;
-		desapilar(pila);
+		pila = desapilar(pila);
 		aux2 = pila->simbolo;
-		desapilar(pila);
-		apilar(pila, btree_unir(aux, aux2, aux1));
+		pila = desapilar(pila);
+		pila = apilar(pila, btree_unir(aux, aux2, aux1));
 		aux = "";
 		}
 		p++;
