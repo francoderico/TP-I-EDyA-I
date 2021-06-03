@@ -10,5 +10,7 @@
 
 BTree crear_arbol_operaciones(TablaOps tabla, char *expresion);
 
+int precedencia(char *operador);
 
+void imprimir(BTree arbol);
 #endif /** __ARBOLOPS_H__ */
