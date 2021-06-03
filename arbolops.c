@@ -26,6 +26,7 @@ BTree crear_arbol_operaciones(TablaOps tabla, char *expresion)
 			aux1 = pila->simbolo;
 			desapilar(pila);
 			apilar(pila, btree_unir(aux, aux1, NULL));	
+			aux = "";
 		}
 		else if(es_operador(tabla,aux)== 2){
 		aux1 = pila->simbolo;
@@ -33,10 +34,12 @@ BTree crear_arbol_operaciones(TablaOps tabla, char *expresion)
 		aux2 = pila->simbolo;
 		desapilar(pila);
 		apilar(pila, btree_unir(aux, aux2, aux1));
+		aux = "";
 		}
 		p++;
 	}
 BTree arbolOps = pila->simbolo;
+destruir(pila);
 return arbolOps;
 }
 
