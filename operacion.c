@@ -34,6 +34,10 @@ Operacion* operacion_crear(char *alias, char *expr, TablaOps tabla)
     strcpy(nuevo->alias, alias);
     
     nuevo->pila = crear_arbol_operaciones(tabla, expr);
+    
+    nuevo->resultado = arbol_operaciones_evaluar((BTree)nuevo->pila, NULL);
+    
+    return nuevo;
 }
 
 
