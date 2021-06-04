@@ -3,20 +3,20 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include "btree.h"
 
 
 /*
  * Crea una nueva operación con los parámetros dados.
  * */
-Operacion* operacion_crear(char *alias, char *expr, int resultado)
-{
-    Operacion* nuevo = malloc(sizeof(Operacion));
+Operacion *operacion_crear(char *alias, BTree arbol, int resultado, FuncionCopia copia) {
+    Operacion *nuevo = malloc(sizeof(Operacion));
 
     nuevo->alias = malloc(sizeof(char) * (strlen(alias) + 1));
     strcpy(nuevo->alias, alias);
 
-    nuevo->expr = malloc(sizeof(char) * (strlen(expr) + 1));
-    strcpy(nuevo->expr, expr);
+    nuevo->arbol = malloc(sizeof(BTree));
+    nuevo->arbol = btree_copiar(arbol, copia);
 
     nuevo->resultado = resultado;
 
@@ -26,22 +26,11 @@ Operacion* operacion_crear(char *alias, char *expr, int resultado)
 
 /*
  * Crea una copia física de la operación.
- * */
-Operacion* operacion_copiar(Operacion *op)
-{
-    Operacion* copia = operacion_crear(op->alias, op->expr, op->resultado);
-    
+ */
+Operacion *operacion_copiar(Operacion * op, FuncionCopia copia2) {
+    Operacion *copia = operacion_crear(op->alias, op->arbol, op->resultado, copia2);
+
     return copia;
-}
-
-
-//Sin hacer
-/*
- * Evalúa la expresión de la operación.
- * */
-int operacion_evaluar(Operacion *op)
-{
-    
 }
 
 
@@ -52,36 +41,19 @@ int operacion_evaluar(Operacion *op)
  * 0 si op1->alias == op2->alias,
  * 1 si op1->alias > op2->alias.
  * */
-int operacion_comparar(Operacion *op1, Operacion *op2)
-{
+int operacion_comparar(Operacion * op1, Operacion * op2) {
     return strcmp(op1->alias, op2->alias);
 }
 
-
-//Sin hacer
-/*
- * Imprime la expresión de la operación, con notación infija.
- * */
-void operacion_imprimir(Operacion *op)
-{
-    
-}
 
 
 /*
  * Destruye la operación, liberando la memoria dinámica.
  * */
-void operacion_destruir(Operacion *op)
-{
+void operacion_destruir(Operacion * op, FuncionDestructora2 destruir) {
     free(op->alias);
-    
-    free(op->expr);
-    
+
+    btree_destruir(op->arbol, destruir);
+
     free(op);
 }
-
-
-
-
-
-
