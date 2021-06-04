@@ -1,3 +1,8 @@
+/*
+ * Archivo de prueba de funcionamiento de arbolops.c
+ * Fue testeado exhaustivamente con la herramienta memcheck de valgrind
+ * */
+
 #include "arbolops.h"
 #include "tablaops.h"
 #include "btree.h"
@@ -7,29 +12,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-
-
-
-void destruir_operador_o_int(BTNodo nodo)
-{
-    if(nodo.left == NULL && nodo.right == NULL)
-    {
-        free((int*)(nodo.dato));
-    }
-    else
-    {
-        operador_destruir((Operador*)(nodo.dato));
-    }
-}
-
-
-
-void btree_destruir_operador_o_int(void *dato)
-{
-    btree_destruir((BTree)dato, destruir_operador_o_int);
-}
-
-
 
 
 

@@ -275,3 +275,23 @@ int arbol_operaciones_evaluar(BTree arbol, int *args) {
         }
     }
 }
+
+
+void destruir_operador_o_int(BTNodo nodo)
+{
+    if(nodo.left == NULL && nodo.right == NULL)
+    {
+        free((int*)(nodo.dato));
+    }
+    else
+    {
+        operador_destruir((Operador*)(nodo.dato));
+    }
+}
+
+
+
+void btree_destruir_operador_o_int(void *dato)
+{
+    btree_destruir((BTree)dato, destruir_operador_o_int);
+}

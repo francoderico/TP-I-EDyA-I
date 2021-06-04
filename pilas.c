@@ -38,12 +38,6 @@ Pila push(Pila pila, void *dato, FuncionCopia copia)
 }
 
 
-void push_void(Pila *pila, void *dato, FuncionCopia copia)
-{
-    *pila = glist_agregar_inicio(*pila, dato, copia);
-}
-
-
 Pila pop(Pila pila, FuncionDestructora destruir)
 {
     assert(pila);
@@ -58,60 +52,3 @@ Pila pop(Pila pila, FuncionDestructora destruir)
     
     return pila;
 }
-
-
-void pop_void(Pila *pila, FuncionDestructora destruir)
-{
-    assert(*pila);
-    
-    Pila aux = (*pila)->sig;
-    
-    destruir((*pila)->dato);
-    
-    free(*pila);
-    
-    *pila = aux;
-}
-
-
-GList glist_revertir(GList lista, FuncionCopia copia, FuncionDestructora destruir)
-{
-    Pila pila = pila_crear();
-    
-    GList otra = lista;
-    
-    while(otra)
-    {
-        pila = push(pila, otra->dato, copia);
-        
-        otra = otra->sig;
-    }
-    
-    glist_destruir(lista, destruir);
-    
-    return pila;
-}
-
-
-void glist_revertir_void(GList *lista, FuncionCopia copia, FuncionDestructora destruir)
-{
-    Pila pila = pila_crear();
-    
-    GList otra = *lista;
-    
-    while(otra)
-    {
-        pila = push(pila, otra->dato, copia);
-        
-        otra = otra->sig;
-    }
-    
-    glist_destruir(*lista, destruir);
-    
-    *lista = pila;
-}
-
-
-
-
-

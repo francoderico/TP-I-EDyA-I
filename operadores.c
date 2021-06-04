@@ -64,8 +64,6 @@ int modulo(int *args) {
  * */
 int potencia(int *args)
 {
-    //return pow(args[0], args[1]);   //Chequear esto con los casts y eso.
-    
     int ret = 1;
     
     for(int i = 0; i < args[1]; i ++)

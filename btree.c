@@ -65,95 +65,8 @@ void btree_recorrer(BTree arbol, BTreeOrdenDeRecorrido orden,
 
 
 
-//btree_recorrer_pre_iterativo
-
-//En esta impliementación, copiamos el nodo (NO todo el árbol)
-//en cada paso, y luego vamos liberando la memoria.
 
 
-void *copiar_nodo(void *nodo) {
-    BTNodo *p = malloc(sizeof(BTNodo));
-
-    *p = *(BTNodo *) nodo;
-
-    return p;
-}
-
-
-/*
-
-void btree_recorrer_pre_iterativo(BTree arbol, FuncionVisitante visit) {
-    Pila pila = pila_crear();
-
-    pila = push(pila, (void *) arbol, copiar_nodo);     //La pila guarda punteros a nodos(subárboles)
-
-    while (!is_empty(pila)) {
-        BTree x = copiar_nodo((void *) top(pila));
-
-        pila = pop(pila, free);
-
-        visit(x->dato);
-
-        if (x->right)
-            pila = push(pila, (void *) (x->right), copiar_nodo);
-
-        if (x->left)
-            pila = push(pila, (void *) (x->left), copiar_nodo);
-
-        free(x);
-    }
-
-    pila_destruir(pila, free);
-}
-
-
-
-
-//btree_recorrer_pre_iterativo2
-
-//En esta impliementación, NO copiamos el nodo (usamos el que ya está)
-//en cada paso, y luego NO vamos liberando la memoria.
-
-
-
-
-void *id(void *nodo) {
-    return nodo;
-}
-
-void no_destruir(void *nodo) {
-    return;
-}
-
-
-
-void btree_recorrer_pre_iterativo2(BTree arbol, FuncionVisitante visit) {
-    Pila pila = pila_crear();
-
-    pila = push(pila, (void *) arbol, id);      //La pila guarda punteros a nodos(subárboles)
-
-    while (!is_empty(pila)) {
-        BTree x = top(pila);
-
-        pila = pop(pila, no_destruir);
-
-        visit(x->dato);
-
-        if (x->right)
-            pila = push(pila, (void *) (x->right), id);
-
-        if (x->left)
-            pila = push(pila, (void *) (x->left), id);
-
-        //~ free(x);    NO hay que hacerlo porque no estamos usando una
-        //copia, estamos usando el real.
-    }
-
-    pila_destruir(pila, no_destruir);
-}
-
-
-*/
 
 
 
@@ -250,12 +163,3 @@ int btree_profundidad(void *dato, BTree arbol, FuncionComparadora comp) {
 
     return profundidadL < profundidadR ? profundidadL + 1 : profundidadR + 1;
 }
-
-
-//int btree_sumar(BTree arbol) {
-    //if (btree_empty(arbol)) {
-        //return 0;
-    //}
-
-    //return arbol->dato + btree_sumar(arbol->left) + btree_sumar(arbol->right);
-//}

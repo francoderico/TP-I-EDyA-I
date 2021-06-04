@@ -17,19 +17,7 @@ void* top(Pila pila);
 
 Pila push(Pila pila, void *dato, FuncionCopia copia);
 
-void push_void(Pila *pila, void *dato, FuncionCopia copia);
-
 Pila pop(Pila pila, FuncionDestructora destruir);
-
-void pop_void(Pila *pila, FuncionDestructora destruir);
-
-void pila_imprimir(Pila pila);
-
-GList glist_revertir(GList lista, FuncionCopia copia, FuncionDestructora destruir);
-
-void glist_revertir_void(GList *lista, FuncionCopia copia, FuncionDestructora destruir);
-
-
 
 
 

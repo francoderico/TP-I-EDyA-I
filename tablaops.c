@@ -3,6 +3,7 @@
 #include "struct_operador.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 
 TablaOps tablaOps_crear() {
@@ -63,43 +64,12 @@ void cargar_operador(TablaOps * tabla, char *simbolo, int aridad,
     operador_destruir(nuevo);
 }
 
-/*
- *Determina si un simbolo es un operador de una tabla de operadores.
- * Si le saco lo de simbolo compila. No se me ocurre como acceder a los datos del operador  cuando almacenamos datos con *void. 
- */
 
-//int es_operador(TablaOps tabla, char *simbolo) {
-    //int ok = 0;
-    //char *buscar;
-    //buscar = simbolo;
-    //TablaOps tablaaux = tabla;
-    //Operador *aux;
-    //*(Operador *) aux = *(Operador *) tablaaux->dato;
-    //while (aux != NULL && aux->simbolo != buscar) {
-        //tablaaux = tablaaux->sig;
-        //*(Operador *) aux = *(Operador *) tablaaux->dato;
-    //}
-    //if (aux->simbolo == buscar) {
-        //ok = aux->aridad;
-    //}
-    //return ok;
-//}
 
-#include <string.h>
-
-int fun(void *a, void *b)
-{
-    return strcmp(((Operador*)a)->simbolo, ((Operador*)b)->simbolo);
-}
 
 
 int es_operador(TablaOps tabla, char *simbolo)
 {
-    //if(glist_buscar(tabla, (void*)simbolo, fun) > -1)
-        //return 1;
-    
-    //return 0;
-    
     if(tabla == NULL)
     {
         return 0;
@@ -115,25 +85,6 @@ int es_operador(TablaOps tabla, char *simbolo)
 
 
 
-
-
-
-//Operador buscar_operador(TablaOps tabla, char *simbolo) {
-    //FuncionEvaluacion funcion;
-    //char *buscar;
-    //buscar = simbolo;
-    //TablaOps tablaaux = tabla;
-    //Operador *aux;
-    //*(Operador *) aux = *(Operador *) tablaaux->dato;
-    //while (aux != NULL && aux->simbolo != buscar) {
-        //tablaaux = tablaaux->sig;
-        //*(Operador *) aux = *(Operador *) tablaaux->dato;
-    //}
-    //if (aux->simbolo == buscar) {
-        //funcion = aux->eval;
-    //}
-    //return *aux;
-//}
 
 
 Operador* buscar_operador(TablaOps tabla, char *simbolo)
