@@ -194,29 +194,53 @@ int main() {
     
     char* expr = malloc(sizeof(char) * 200);
     
-    //expr = strcpy(expr, "5 7 + 8 -"); //No da error de memoria ni de free
-    //arbol_operaciones_imprimir: 
+    //expr = strcpy(expr, "5 7 + 8 -");
+    //arbol_operaciones_imprimir: 5 + 7 - 8
+    //arbol_operaciones_evaluar = 4
     
-    //expr = strcpy(expr, "4 8 + --"); //No da error de memoria ni de free
-    //arbol_operaciones_imprimir: 
+    //expr = strcpy(expr, "4 8 + --");
+    //arbol_operaciones_imprimir: --(4 + 8)
+    //arbol_operaciones_evaluar = -12
     
-    //expr = strcpy(expr, "4 8 + 5 + 6 + --"); //No da error de memoria ni de free
-    //arbol_operaciones_imprimir: 
+    //expr = strcpy(expr, "4 8 + 5 + 6 + --");
+    //arbol_operaciones_imprimir: --(4 + 8 + 5 + 6)
+    //arbol_operaciones_evaluar = -23
     
-    //expr = strcpy(expr, "4 8 + 5 + 6 + 9 +"); //No da error de memoria ni de free
-    //arbol_operaciones_imprimir: 
+    //expr = strcpy(expr, "4 8 + 5 + 6 + 9 +");
+    //arbol_operaciones_imprimir: 4 + 8 + 5 + 6 + 9
+    //arbol_operaciones_evaluar = 32
     
-    //expr = strcpy(expr, "3 3 + 4 8 + 5 9 + 6 + * 2 - % --"); //No da error de memoria ni de free
-    //arbol_operaciones_imprimir: 
+    //expr = strcpy(expr, "3 3 + 4 8 + 5 9 + 6 + * 2 - % --");
+    //arbol_operaciones_imprimir: --(3 + 3) % ((4 + 8) * (5 + 9 + 6) - 2)
+    //arbol_operaciones_evaluar = -6
     
-    //expr = strcpy(expr, "2 3 + 4 5 + *"); //No da error de memoria ni de free
-    //arbol_operaciones_imprimir: 
+    //expr = strcpy(expr, "2 3 + 4 5 + *");
+    //arbol_operaciones_imprimir: (2 + 3) * (4 + 5)
+    //arbol_operaciones_evaluar = 45
     
-    //expr = strcpy(expr, "2 3 * 4 5 * ^"); //No da error de memoria ni de free
-    //arbol_operaciones_imprimir: 
+    //expr = strcpy(expr, "2 3 * 4 5 + ^");
+    //arbol_operaciones_imprimir: (2 * 3) ^ (4 + 5)
+    //arbol_operaciones_evaluar = 10077696
     
-    expr = strcpy(expr, "2 3 * 4 5 % /");
+    //expr = strcpy(expr, "2 3 * 4 5 % /");
     //arbol_operaciones_imprimir: 2 * 3 / 4 % 5
+    //arbol_operaciones_evaluar = 1              //Notemos que la división es entera, por lo que 6/4 = 1
+    
+    //expr = strcpy(expr, "12 9 %");
+    //arbol_operaciones_imprimir: 12 % 9
+    //arbol_operaciones_evaluar = 3
+    
+    //expr = strcpy(expr, "2 -- 5 +");
+    //arbol_operaciones_imprimir: --2 + 5
+    //arbol_operaciones_evaluar = 3
+    
+    //expr = strcpy(expr, "5");
+    //arbol_operaciones_imprimir: 5
+    //arbol_operaciones_evaluar = 5
+    
+    expr = strcpy(expr, "5 --");
+    //arbol_operaciones_imprimir: --5
+    //arbol_operaciones_evaluar = -5
     
     printf("%s\n", expr);
     
@@ -252,6 +276,12 @@ int main() {
     arbol_operaciones_imprimir(arbol);
     printf("\n");
     
+    
+    int* args = malloc(sizeof(int) * 2);
+    
+    printf("El resultado es %d\n", arbol_operaciones_evaluar(arbol, args));
+    
+    free(args);
     
     
     

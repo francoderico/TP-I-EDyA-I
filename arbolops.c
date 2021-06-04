@@ -367,7 +367,12 @@ void imprimir(BTree arbol) {
 
 
 void arbol_operaciones_imprimir(BTree arbol) {
-    if (arbol != NULL)
+    
+    if(arbol == NULL)
+    {
+        printf("La operación es vacía.");
+    }
+    else
     {
         if(arbol->left == NULL && arbol->right == NULL)
         {
@@ -387,9 +392,13 @@ void arbol_operaciones_imprimir(BTree arbol) {
                 {
                     arbol_operaciones_imprimir(arbol->left);
                 }
+                
+                printf(" %s ", ((Operador*)(arbol->dato))->simbolo);
             }
-            
-            printf(" %s ", ((Operador*)(arbol->dato))->simbolo);
+            else
+            {
+                printf("%s", ((Operador*)(arbol->dato))->simbolo);
+            }
             
             if(precedencia(arbol) > precedencia(arbol->right))
             {
@@ -400,6 +409,45 @@ void arbol_operaciones_imprimir(BTree arbol) {
             else
             {
                 arbol_operaciones_imprimir(arbol->right);
+            }
+        }
+    }
+}
+
+
+
+
+
+
+int arbol_operaciones_evaluar(BTree arbol, int *args) {
+    
+    if(arbol == NULL)
+    {
+        return 0;
+    }
+    else
+    {
+        if(arbol->left == NULL && arbol->right == NULL)
+        {
+            return *(int*)(arbol->dato);
+        }
+        else
+        {
+            if(((Operador*)(arbol->dato))->aridad == 2)
+            {
+                int auxLeft = arbol_operaciones_evaluar(arbol->left, args), auxRight = arbol_operaciones_evaluar(arbol->right, args);
+                
+                args[0] = auxLeft;
+                
+                args[1] = auxRight;
+                
+                return ((Operador*)(arbol->dato))->eval(args);
+            }
+            else
+            {
+                args[0] = arbol_operaciones_evaluar(arbol->right, args);
+                
+                return ((Operador*)(arbol->dato))->eval(args);
             }
         }
     }

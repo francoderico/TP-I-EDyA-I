@@ -15,6 +15,6 @@ int precedencia(BTree arbol);
 
 void arbol_operaciones_imprimir(BTree arbol);
 
-int evaluar(BTree arbol, TablaOps tabla);
+int arbol_operaciones_evaluar(BTree arbol, int *args);
 
 #endif /** __ARBOLOPS_H__ */
