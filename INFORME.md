@@ -10,3 +10,4 @@ Ejemplo de compilación:
 *Lo vemos cuando tengamos el main y todas las librerias bien ordenadas.
 
 Bibliografía consultada:
+Estructuras de Datos con C - Tenenbaum, Langsam, Augenstein
