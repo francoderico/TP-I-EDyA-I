@@ -1,6 +1,7 @@
 #ifndef __OPERADORES_H__
 #define __OPERADORES_H__
 
+typedef int (*FuncionEvaluacion) (int *args);  //Esta definido esto? no lo encontré por ningun lado. 
 
 int suma(int *args);
 
