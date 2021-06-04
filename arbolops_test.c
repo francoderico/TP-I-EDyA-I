@@ -137,7 +137,7 @@ int main() {
     
     //expr = strcpy(expr, "5 7 + 8 -"); //No da error de memoria ni de free
     
-    //expr = strcpy(expr, "4 8 + --"); //No da error de memoria ni de free
+    expr = strcpy(expr, "4 8 + --"); //No da error de memoria ni de free
     
     //expr = strcpy(expr, "4 8 + 5 + 6 +"); //Sí da error de memoria ni de free
     
@@ -165,6 +165,7 @@ int main() {
     
     
     
+    /*
     
     Pila pila2 = crear_arbol_operaciones2(tabla, expr);
     
@@ -188,6 +189,8 @@ int main() {
     //aux->dato = n;
     
     pila_destruir(pila2, btree_destruir_operador_o_int);
+    
+    */
     
     
     

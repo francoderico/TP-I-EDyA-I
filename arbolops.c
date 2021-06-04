@@ -207,6 +207,8 @@ Pila crear_arbol_operaciones(TablaOps tabla, char *p)
 
 
 
+//Función que hice para testear
+
 Pila crear_arbol_operaciones2(TablaOps tabla, char *p)
 {
     Pila pila = pila_crear();
@@ -320,7 +322,7 @@ void imprimir(BTree arbol) {
 
 //Funcion que devuelve la evaluacion de un arbol de operaciones.
 
-/*
+
 int evaluar(BTree arbol, TablaOps tabla) {
     int resultado;
     if (es_operador(tabla, arbol->dato) > 0) {
@@ -336,4 +338,4 @@ int evaluar(BTree arbol, TablaOps tabla) {
     }
     return resultado;           // Lo retorna, no lo imprime. Despues habra que hacer un printf aparte sino se enquilombaba todo con la recursion.
 }
-*/
+
