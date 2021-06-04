@@ -102,7 +102,24 @@ void imprimir(BTree arbol){
 	}
 }
 
+//Funcion que devuelve la evaluacion de un arbol de operaciones.
 
 
+int evaluar(BTree arbol, TablaOps tabla){
+	int resultado;
+	if (es_operador(tabla, arbol->dato) > 0){
+		FuncionEvaluacion funcion = buscar_operador(tabla, arbol->dato);
+		int operandos[2];
+		operandos[0] = evaluar(arbol->left, tabla);
+		if (arbol->right){
+			operandos[1] = evaluar(arbol->right, tabla);
+		}
+		resultado = funcion(operandos);
+	}
+	else{
+		resultado = atoi(arbol->dato);
+	}
+	return resultado;   // Lo retorna, no lo imprime. Despues habra que hacer un printf aparte sino se enquilombaba todo con la recursion.
+}
 
 
