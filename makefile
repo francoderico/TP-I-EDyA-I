@@ -1,7 +1,13 @@
-arbolops_test: arbolops_test.c arbolops.o btree.o glist.o operacion.o operadores.o pilas.o struct_operador.o tablaops.o
+#arbolops_test: arbolops_test.c arbolops.o btree.o bstree.o glist.o operacion.o operadores.o pilas.o struct_operador.o tablaops.o
+#	$(CC) -o $@ $^
+
+operacion_test: operacion_test.c arbolops.o btree.o bstree.o glist.o operacion.o operadores.o pilas.o struct_operador.o tablaops.o
 	$(CC) -o $@ $^
 
 arbolops.o: arbolops.c
+	$(CC) -c $<
+
+bstree.o: bstree.c
 	$(CC) -c $<
 
 btree.o: btree.c

@@ -3,32 +3,31 @@
 
 /*Archivo cabecera de la estructura operación y sus funciones.*/
 
-#include "btree.h"
+
 #include "arbolops.h"
-#include "pilas.h"
+
 
 /*
- * Vamos a almacenar las operaciones según su alias (dado por el usuario
- * a través de la entrada estándar), su árbol de operación, y su
- * resultado, que serán calculados en el momento en el que leemos la
+ * Vamos a almacenar las operaciones según su alias y su expresión
+ * (dadas por el usuario a través de la entrada estándar), y su
+ * resultado, que será calculado en el momento en el que leemos la
  * expresión.
  * */
 typedef struct _Operacion {
     char *alias;
-    Pila pila;             
+    char *expr;                 //Ver si es mejor guardar la string (5 -- 2 3 +) o el árbol. Me inclino para el àrbol, va a estar màs simple asì para la operacion imprimir.
     int resultado;
 } Operacion;
 
 /*
  * Crea una nueva operación con los parámetros dados.
  * */
-//Operacion *operacion_crear(char *alias, BTree arbol, int resultado, FuncionCopia copia);
-Operacion* operacion_crear(char *alias, char *expr, TablaOps tabla);
+Operacion *operacion_crear(char *alias, char *expr, int resultado);
 
 /*
  * Crea una copia física de la operación.
  * */
-Operacion *operacion_copiar(Operacion * op, FuncionCopia copia2);
+Operacion *operacion_copiar(Operacion * op);
 
 /*
  * Evalúa la expresión de la operación.
@@ -53,8 +52,7 @@ void operacion_imprimir(Operacion * op);
 /*
  * Destruye la operación, liberando la memoria dinámica.
  * */
-//void operacion_destruir(Operacion * op, FuncionDestructora2 destruir);
-void operacion_destruir(Operacion *op);
+void operacion_destruir(Operacion * op);
 
 
 

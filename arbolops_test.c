@@ -15,64 +15,69 @@
 
 
 
-
-int main() {
-    
-    TablaOps tabla = tablaOps_crear();
-
-
-    char *sim = malloc(sizeof(char) * 2);
-
-    sim[0] = '+';
-    sim[1] = '\0';
-
-    cargar_operador(&tabla, sim, 2, suma);
-
-
-    sim[0] = '-';               //sim[1] = '\0';
-
-    cargar_operador(&tabla, sim, 2, resta);
-
-    free(sim);
-
-
-    sim = malloc(sizeof(char) * 3);
+void cargar(TablaOps *tabla)
+{
+    char* sim = malloc(sizeof(char) * 3);
 
     sim[0] = '-';
     sim[1] = '-';
     sim[2] = '\0';
 
-    cargar_operador(&tabla, sim, 1, opuesto);
+    cargar_operador(tabla, sim, 1, opuesto);
 
     free(sim);
-
+    
 
     sim = malloc(sizeof(char) * 2);
 
-    sim[0] = '*';
+    sim[0] = '+';
     sim[1] = '\0';
 
-    cargar_operador(&tabla, sim, 2, producto);
+    cargar_operador(tabla, sim, 2, suma);
 
 
-    sim[0] = '/';               //sim[1] = '\0';
+    sim[0] = '-';
+    //sim[1] = '\0';
 
-    cargar_operador(&tabla, sim, 2, division);
+    cargar_operador(tabla, sim, 2, resta);
 
 
-    sim[0] = '%';               //sim[1] = '\0';
+    sim[0] = '*';
+    //sim[1] = '\0';
 
-    cargar_operador(&tabla, sim, 2, modulo);
+    cargar_operador(tabla, sim, 2, producto);
+
+
+    sim[0] = '/';
+    //sim[1] = '\0';
+
+    cargar_operador(tabla, sim, 2, division);
+
+
+    sim[0] = '%';
+    //sim[1] = '\0';
+
+    cargar_operador(tabla, sim, 2, modulo);
     
     
-    sim[0] = '^';               //sim[1] = '\0';
+    sim[0] = '^';
+    //sim[1] = '\0';
     
-    cargar_operador(&tabla, sim, 2, potencia);
+    cargar_operador(tabla, sim, 2, potencia);
     
 
     free(sim);
+}
 
 
+
+
+
+int main() {
+    
+    TablaOps tabla = tablaOps_crear();
+
+    cargar(&tabla);
     
     
     char* expr = malloc(sizeof(char) * 200);

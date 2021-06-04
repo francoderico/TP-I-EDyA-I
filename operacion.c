@@ -9,29 +9,54 @@
 /*
  * Crea una nueva operación con los parámetros dados.
  * */
+ 
+/*
 Operacion *operacion_crear(char *alias, BTree arbol, int resultado, FuncionCopia copia) {
     Operacion *nuevo = malloc(sizeof(Operacion));
 
     nuevo->alias = malloc(sizeof(char) * (strlen(alias) + 1));
     strcpy(nuevo->alias, alias);
 
-    nuevo->arbol = malloc(sizeof(BTree));
     nuevo->arbol = btree_copiar(arbol, copia);
 
     nuevo->resultado = resultado;
 
     return nuevo;
 }
+* */
+
+
+Operacion* operacion_crear(char *alias, char *expr, TablaOps tabla)
+{
+    Operacion *nuevo = malloc(sizeof(Operacion));
+
+    nuevo->alias = malloc(sizeof(char) * (strlen(alias) + 1));
+    strcpy(nuevo->alias, alias);
+    
+    nuevo->pila = crear_arbol_operaciones(tabla, expr);
+}
+
+
+void operacion_destruir(Operacion *op)
+{
+    free(op->alias);
+    
+    pila_destruir(op->pila, btree_destruir_operador_o_int);
+    
+    free(op);
+}
+
+
 
 
 /*
  * Crea una copia física de la operación.
  */
-Operacion *operacion_copiar(Operacion * op, FuncionCopia copia2) {
-    Operacion *copia = operacion_crear(op->alias, op->arbol, op->resultado, copia2);
+//Operacion *operacion_copiar(Operacion * op, FuncionCopia copia2) {
+    //Operacion *copia = operacion_crear(op->alias, op->arbol, op->resultado, copia2);
 
-    return copia;
-}
+    //return copia;
+//}
 
 
 /*
@@ -41,15 +66,18 @@ Operacion *operacion_copiar(Operacion * op, FuncionCopia copia2) {
  * 0 si op1->alias == op2->alias,
  * 1 si op1->alias > op2->alias.
  * */
-int operacion_comparar(Operacion * op1, Operacion * op2) {
-    return strcmp(op1->alias, op2->alias);
-}
+//int operacion_comparar(Operacion * op1, Operacion * op2) {
+    //return strcmp(op1->alias, op2->alias);
+//}
+
 
 
 
 /*
  * Destruye la operación, liberando la memoria dinámica.
  * */
+ 
+/*
 void operacion_destruir(Operacion * op, FuncionDestructora2 destruir) {
     free(op->alias);
 
@@ -57,3 +85,4 @@ void operacion_destruir(Operacion * op, FuncionDestructora2 destruir) {
 
     free(op);
 }
+*/
