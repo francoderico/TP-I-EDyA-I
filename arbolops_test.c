@@ -67,6 +67,59 @@ void btree_destruir_operador_o_int(void *dato)
 
 
 
+
+
+void btree_recorrer_operador_o_int(BTree arbol, BTreeOrdenDeRecorrido orden) {
+    
+    if (!btree_empty(arbol)) {
+        
+        if (orden == BTREE_RECORRIDO_PRE)
+        {
+            if(arbol->left == NULL && arbol->right == NULL)
+            {
+                printf("%d ", *(int*)(arbol->dato));
+            }
+            else
+            {
+                printf("%s ", ((Operador*)(arbol->dato))->simbolo);
+            }
+        }
+
+        btree_recorrer_operador_o_int(arbol->left, orden);
+
+        if (orden == BTREE_RECORRIDO_IN)
+        {
+            if(arbol->left == NULL && arbol->right == NULL)
+            {
+                printf("%d ", *(int*)(arbol->dato));
+            }
+            else
+            {
+                printf("%s ", ((Operador*)(arbol->dato))->simbolo);
+            }
+        }
+
+        btree_recorrer_operador_o_int(arbol->right, orden);
+
+        if (orden == BTREE_RECORRIDO_POST)
+        {
+            if(arbol->left == NULL && arbol->right == NULL)
+            {
+                printf("%d ", *(int*)(arbol->dato));
+            }
+            else
+            {
+                printf("%s ", ((Operador*)(arbol->dato))->simbolo);
+            }
+        }
+    }
+}
+
+
+
+
+
+
 int main() {
     
     TablaOps tabla = tablaOps_crear();
@@ -133,15 +186,15 @@ int main() {
         otra = otra->sig;
     }
     
-    char* expr = malloc(sizeof(char) * 10);
+    char* expr = malloc(sizeof(char) * 200);
     
     //expr = strcpy(expr, "5 7 + 8 -"); //No da error de memoria ni de free
     
-    expr = strcpy(expr, "4 8 + --"); //No da error de memoria ni de free
+    //expr = strcpy(expr, "4 8 + --"); //No da error de memoria ni de free
     
-    //expr = strcpy(expr, "4 8 + 5 + 6 +"); //Sí da error de memoria ni de free
+    //expr = strcpy(expr, "4 8 + 5 + 6 +"); //No da error de memoria ni de free
     
-    //expr = strcpy(expr, "4 8 + 5 + 6 + 9 +"); //Sí da error de memoria ni de free
+    expr = strcpy(expr, "4 8 + 5 + 6 + 9 +"); //No da error de memoria ni de free
     
     printf("%s\n", expr);
     
@@ -153,6 +206,29 @@ int main() {
     Pila pila = crear_arbol_operaciones(tabla, expr);
     
     BTree arbol = (BTree)top(pila);
+    
+    
+    Pila otraPila = pila;
+    
+    int i = 0;
+    
+    while(otraPila != NULL)
+    {
+        i ++;
+        
+        otraPila = otraPila->sig;
+    }
+    
+    printf("Tiene tamaño %d\n", i);
+    
+    
+    
+    btree_recorrer_operador_o_int(arbol, BTREE_RECORRIDO_IN);
+    printf("\n");
+    
+    
+    
+    
     
     
     pila_destruir(pila, btree_destruir_operador_o_int);
