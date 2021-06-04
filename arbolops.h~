@@ -7,7 +7,7 @@
 #include "btree.h"
 #include "pilas.h"
 
-Pila crear_arbol_operaciones(TablaOps tabla, char *p);
+BTree crear_arbol_operaciones(TablaOps tabla, char *expresion);
 
 int precedencia(char *operador);
 

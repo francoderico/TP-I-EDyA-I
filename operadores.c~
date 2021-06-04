@@ -5,7 +5,8 @@
 /*
  * Devuelve la suma entre 2 números.
  * */
-int suma(int *args) {
+int suma(int *args)
+{
     return args[0] + args[1];
 }
 
@@ -13,7 +14,8 @@ int suma(int *args) {
 /*
  * Devuelve la resta entre 2 números.
  * */
-int resta(int *args) {
+int resta(int *args)
+{
     return args[0] - args[1];
 }
 
@@ -21,7 +23,8 @@ int resta(int *args) {
 /*
  * Devuelve el opuesto de un número.
  * */
-int opuesto(int *args) {
+int opuesto(int *args)
+{
     return -args[0];
 }
 
@@ -29,7 +32,8 @@ int opuesto(int *args) {
 /*
  * Devuelve el producto entre 2 números.
  * */
-int producto(int *args) {
+int producto(int *args)
+{
     return args[0] * args[1];
 }
 
@@ -37,7 +41,8 @@ int producto(int *args) {
 /*
  * Devuelve la división entera entre 2 números.
  * */
-int division(int *args) {
+int division(int *args)
+{
     return args[0] / args[1];
 }
 
@@ -45,7 +50,8 @@ int division(int *args) {
 /*
  * Devuelve el resto de un número en la división por el segundo.
  * */
-int modulo(int *args) {
+int modulo(int *args)
+{
     return args[0] % args[1];
 }
 
