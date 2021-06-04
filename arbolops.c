@@ -10,6 +10,7 @@
 
 //Crea un arbol de operaciones a partir de una expresión aritmética.
 
+<<<<<<< HEAD
 BTree crear_arbol_operaciones(TablaOps tabla, char *expresion) {
     Pila pila = pila_crear();
     char *p;
@@ -40,6 +41,42 @@ BTree crear_arbol_operaciones(TablaOps tabla, char *expresion) {
     BTree arbolOps = pila->simbolo;
     destruir(pila);
     return arbolOps;
+=======
+BTree crear_arbol_operaciones(TablaOps tabla, char *expresion)
+{
+	Pila pila = pila_crear();
+	char *p;
+	char *aux;
+	BTree aux1;
+	BTree aux2;
+	p = expresion;
+	while (*p != '\0'){
+		if(*p != " "){
+			aux = strcat(aux, *p);
+		}
+		else if(!es_operador(tabla, aux)){
+			pila = apilar(pila, btree_unir(aux, NULL, NULL));
+		}
+		else if (es_operador(tabla, aux) == 1){
+			aux1 = pila->simbolo;
+			pila = desapilar(pila);
+			pila = apilar(pila, btree_unir(aux, aux1, NULL));	
+			aux = "";
+		}
+		else if(es_operador(tabla,aux)== 2){
+		aux1 = pila->simbolo;
+		pila = desapilar(pila);
+		aux2 = pila->simbolo;
+		pila = desapilar(pila);
+		pila = apilar(pila, btree_unir(aux, aux2, aux1));
+		aux = "";
+		}
+		p++;
+	}
+BTree arbolOps = pila->simbolo;
+destruir(pila);
+return arbolOps;
+>>>>>>> 00a59eebbea5eb9404b5fae07c1902f8dc848380
 }
 
 //Determina la precedencia de un operador. 
@@ -92,3 +129,28 @@ void imprimir(BTree arbol) {
         }
     }
 }
+<<<<<<< HEAD
+=======
+
+//Funcion que devuelve la evaluacion de un arbol de operaciones.
+
+
+int evaluar(BTree arbol, TablaOps tabla){
+	int resultado;
+	if (es_operador(tabla, arbol->dato) > 0){
+		FuncionEvaluacion funcion = buscar_operador(tabla, arbol->dato);
+		int operandos[2];
+		operandos[0] = evaluar(arbol->left, tabla);
+		if (arbol->right){
+			operandos[1] = evaluar(arbol->right, tabla);
+		}
+		resultado = funcion(operandos);
+	}
+	else{
+		resultado = atoi(arbol->dato);
+	}
+	return resultado;   // Lo retorna, no lo imprime. Despues habra que hacer un printf aparte sino se enquilombaba todo con la recursion.
+}
+
+
+>>>>>>> 00a59eebbea5eb9404b5fae07c1902f8dc848380

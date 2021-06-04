@@ -18,10 +18,10 @@ typedef Simbolo *Pila;
 Pila pila_crear();
 
 //Operacion Push
-void apilar(Pila pila, BTree simbolo);
+Pila apilar(Pila pila, BTree simbolo);
 
 //Operacion Pop
-void desapilar(Pila pila);
+Pila desapilar(Pila pila);
 
 //Destruye la pila
 void destruir(Pila pila);
