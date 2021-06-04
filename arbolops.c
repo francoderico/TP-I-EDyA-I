@@ -118,21 +118,15 @@ Pila crear_arbol_operaciones(TablaOps tabla, char *p)
     
     while(*p != '\0')
     {
-        //printf("*p vale %c\n", *p);
-        
         if(*p != ' ')
         {
             char* q = p;
             
             q ++;
             
-            //printf("*q vale %c\n", *q);
-            
             while(*q != '\0' && *q != ' ')
             {
                 q ++;
-                
-                //printf("*q vale %c\n", *q);
             }
             
             char* coso = malloc(sizeof(char) * 15);
@@ -145,108 +139,53 @@ Pila crear_arbol_operaciones(TablaOps tabla, char *p)
                 
                 p ++;
                 
-                //printf("*p vale %c\n", *p);
-                
                 i ++;
             }
             
             coso[i] = '\0';
             
-            //printf("coso = %s\n", coso);
-            
-            //coso = realloc(coso, i+1);
-            
-            //printf("es_numero(coso) = %d\n", es_numero(coso));
             
             if(es_numero(coso))
             {
                 int* n = malloc(sizeof(int));
-                
+        
                 *n = num(coso);
                 
-                printf("*n = num(coso) = %d\n", *n);
-                
-                //BTree* nuevoArbol = malloc(sizeof(BTree));
+                free(coso);
                 
                 BTree nuevoArbol = btree_unir((void*)n, btree_crear(), btree_crear(), no_copiar);
-                
+                        
                 pila = push(pila, (void*)nuevoArbol, no_copiar);
             }
             else if(es_operador(tabla, coso))
             {
-                printf("ENTRÓ\n");
+                //printf("ENTRÓ\n");
                 
-                //Operador op = buscar_operador(tabla, coso);
+                Operador* op = operador_copiar(buscar_operador(tabla, coso));
+    
+                free(coso);
                 
-                Operador* opPtr = malloc(sizeof(Operador));
-                
-                opPtr = operador_copiar(buscar_operador(tabla, coso));
-                
-                //if(is_empty(pila))
-                //{
-                    //printf("11111111111111111111111111111111\n");
-                //}
-                
-                printf("bandera 1\n");
                 
                 BTree ult = (BTree)top(pila);
-                
-                printf("bandera 2\n");
-                
+    
                 pila = pop(pila, no_destruir);
-                
-                printf("bandera 3\n");
                 
                 BTree penult;
                 
-                if(opPtr->aridad == 2)
+                if(op->aridad == 2)
                 {
-                    //if(is_empty(pila))
-                    //{
-                        //printf("2222222222222222222222222222222\n");
-                    //}
-                    
-                    printf("bandera 4\n");
-                    
                     penult = (BTree)top(pila);
                     
-                    printf("bandera 5\n");
-                    
                     pila = pop(pila, no_destruir);
-                    
-                    printf("bandera 6\n");
                 }
-                else if(opPtr->aridad == 1)
+                else
                 {
                     penult = btree_crear();
                 }
                 
-                //Operador* opPtr = malloc(sizeof(Operador));
-                
-                //*opPtr = op;
-                
-                //BTree* nuevoArbol = malloc(sizeof(BTree));
-                
-                printf("penult apunta a %p\n", penult);
-                
-                printf("ult apunta a %p\n", ult );
-                
-                int* n = malloc(sizeof(int));
-                
-                *n = opPtr->aridad;
-                
-                //BTree nuevoArbol = btree_unir((void*)opPtr, penult, ult, no_copiar);
-                
-                BTree nuevoArbol = btree_unir((void*)n, penult, ult, no_copiar);
-                
-                operador_destruir(opPtr);
-                
-                
-                printf("bandera 7\n");
-                
+                BTree nuevoArbol = btree_unir((void*)op, penult, ult, no_copiar);
+    
                 pila = push(pila, (void*)nuevoArbol, no_copiar);
-                
-                printf("bandera 8\n");
             }
             //else
             //{
@@ -268,6 +207,57 @@ Pila crear_arbol_operaciones(TablaOps tabla, char *p)
 
 
 
+Pila crear_arbol_operaciones2(TablaOps tabla, char *p)
+{
+    Pila pila = pila_crear();
+    
+    int aux = 5;
+    
+    for(int i = 0; i < 2; i ++)
+    {
+        int* n = malloc(sizeof(int));
+        
+        *n = aux + 2*i;
+        
+        BTree nuevoArbol = btree_unir((void*)n, btree_crear(), btree_crear(), no_copiar);
+                
+        pila = push(pila, (void*)nuevoArbol, no_copiar);
+    }
+    
+    BTree ult = (BTree)top(pila);
+    
+    pila = pop(pila, no_destruir);
+    
+    
+    BTree penult;
+    
+    penult = (BTree)top(pila);
+                    
+    pila = pop(pila, no_destruir);
+    
+    
+    
+    char* mas = malloc(sizeof(char) * 2);
+    
+    mas = strcpy(mas, "+");
+    
+    Operador* op = operador_copiar(buscar_operador(tabla, mas));
+    
+    free(mas);
+    
+    
+    
+    //int* n = malloc(sizeof(int));
+                
+    //*n = aux + 2*2;
+    
+    BTree nuevoArbol = btree_unir((void*)op, penult, ult, no_copiar);
+    
+    pila = push(pila, (void*)nuevoArbol, no_copiar);
+    
+    
+    return pila;
+}
 
 
 

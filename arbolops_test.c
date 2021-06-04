@@ -10,9 +10,9 @@
 
 
 
-void destruir_int(void *dato)
+void destruir_int(BTNodo nodo)
 {
-    free((int*)dato);
+    free((int*)(nodo.dato));
 }
 
 
@@ -39,7 +39,31 @@ void btree_destruir_alt(BTree nodo) {
 }
 
 
+void btree_destruir_int(void *dato)
+{
+    btree_destruir((BTree)dato, destruir_int);
+}
 
+
+
+void destruir_operador_o_int(BTNodo nodo)
+{
+    if(nodo.left == NULL && nodo.right == NULL)
+    {
+        free((int*)(nodo.dato));
+    }
+    else
+    {
+        operador_destruir((Operador*)(nodo.dato));
+    }
+}
+
+
+
+void btree_destruir_operador_o_int(void *dato)
+{
+    btree_destruir((BTree)dato, destruir_operador_o_int);
+}
 
 
 
@@ -111,74 +135,69 @@ int main() {
     
     char* expr = malloc(sizeof(char) * 10);
     
-    expr = strcpy(expr, "5 7 +");
+    //expr = strcpy(expr, "5 7 + 8 -"); //No da error de memoria ni de free
+    
+    //expr = strcpy(expr, "4 8 + --"); //No da error de memoria ni de free
+    
+    //expr = strcpy(expr, "4 8 + 5 + 6 +"); //Sí da error de memoria ni de free
+    
+    //expr = strcpy(expr, "4 8 + 5 + 6 + 9 +"); //Sí da error de memoria ni de free
     
     printf("%s\n", expr);
+    
+    
+    
+    
+    
     
     Pila pila = crear_arbol_operaciones(tabla, expr);
     
     BTree arbol = (BTree)top(pila);
     
-    //if((*arbol)->left == NULL)
-    //{
-        //printf("Es NULL\n");
-    //}
     
-    printf("*(int*)(arbol->left->dato) es %d\n", *(int*)(arbol->left->dato));
-    
-    printf("arbol->left->left es %p\n", arbol->left->left);
-    
-    printf("arbol->left->right es %p\n", arbol->left->right);
-    
-    printf("*(int*)(arbol->right->dato) es %d\n", *(int*)(arbol->right->dato));
-    
-    printf("arbol->right->left es %p\n", arbol->right->left);
-    
-    printf("arbol->right->right es %p\n", arbol->right->right);
-    
-    //printf("((Operador*)(arbol->dato))->simbolo es %s\n", ((Operador*)(arbol->dato))->simbolo);
-    
-    //printf("((Operador*)(arbol->dato))->aridad es %d\n", ((Operador*)(arbol->dato))->aridad);
-    
-    //printf("((Operador*)(arbol->dato))->eval(a) es %d\n", ((Operador*)(arbol->dato))->eval(a));
-    
-    printf("*(int*)(arbol->dato) es %d\n", *(int*)(arbol->dato));
-    
-    //imprimir(arbol);
-    
-    //printf("El resultado es %d\n", evaluar(arbol, tabla));
-    
-    //btree_destruir(arbol, free);
-    //btree_destruir((*arbol)->left, free);
-    
-    //btree_destruir((*arbol)->right, free);
-    
-    //free((*arbol)->left->dato);
-    
-    //free((*arbol)->left);
-    
-    //free((*arbol)->right->dato);
-    
-    //free((*arbol)->right);
+    pila_destruir(pila, btree_destruir_operador_o_int);
     
     
-
+    
+    
+    
+    
+    
+    
+    
+    
+    Pila pila2 = crear_arbol_operaciones2(tabla, expr);
+    
+    BTree aux = (BTree)top(pila2);
+    
+    printf("((Operador*)(((BTree)top(pila2))->dato))->aridad vale %d\n", ((Operador*)(aux->dato))->aridad);
+    
+    printf("((Operador*)(((BTree)top(pila2))->dato))->simbolo vale %s\n", ((Operador*)(aux->dato))->simbolo);
+    
+    printf("*(int*)(((BTree)top(pila2))->left->dato) vale %d\n", *(int*)(aux->left->dato));
+    
+    printf("*(int*)(((BTree)top(pila2))->right->dato) vale %d\n", *(int*)(aux->right->dato));
+    
+    
+    //operador_destruir((Operador*)aux->dato);
+    
+    //int* n = malloc(sizeof(int));
+    
+    //*n = 190;
+    
+    //aux->dato = n;
+    
+    pila_destruir(pila2, btree_destruir_operador_o_int);
+    
+    
+    
+    
+    
     free(a);
 
     tablaOps_destruir(tabla);
     
-    //btree_destruir_alt(arbol);
-    
-    //btree_destruir(arbol, destruir_int);
-    
-    btree_destruir((BTree)top(pila), destruir_int);
-    
-    pila_destruir(pila, no_destruir);
-    
-    free(arbol);
-    
     free(expr);
-    
     
     return 0;
 }

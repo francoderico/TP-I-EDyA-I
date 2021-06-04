@@ -12,11 +12,11 @@ BTree btree_crear() {
 /**
  * Destruccion del árbol.
  */
-void btree_destruir(BTree nodo, FuncionDestructora2 destruir) {
+void btree_destruir(BTree nodo, FuncionDestructora destruir) {
     if (nodo != NULL) {
         btree_destruir(nodo->left, destruir);
         btree_destruir(nodo->right, destruir);
-        destruir(*nodo);
+        destruir(nodo->dato);
         free(nodo);
     }
 }

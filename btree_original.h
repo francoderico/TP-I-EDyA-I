@@ -21,12 +21,6 @@ typedef struct _BTNodo {
 
 typedef BTNodo *BTree;
 
-
-
-typedef void (*FuncionDestructora2) (BTNodo nodo);
-
-
-
 /**
  * Devuelve un arbol vacío.
  */
@@ -35,7 +29,7 @@ BTree btree_crear();
 /**
  * Destruccion del árbol.
  */
-void btree_destruir(BTree nodo, FuncionDestructora2 destruir);
+void btree_destruir(BTree nodo, FuncionDestructora destruir);
 
 /**
  * Indica si el árbol es vacío.
