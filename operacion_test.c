@@ -130,7 +130,7 @@ int main()
     printf("\n");
     
     
-    
+    free(alias);
     operacion_destruir(op);
     
     tablaOps_destruir(tabla);
