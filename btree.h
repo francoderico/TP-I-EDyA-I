@@ -27,4 +27,4 @@ BTree btree_unir(void *dato, BTree left, BTree right);
 
 
 
-#endif     /* __BTREE_H__ */
+#endif /* __BTREE_H__ */

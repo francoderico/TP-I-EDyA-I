@@ -2,14 +2,14 @@
 #define __PILAS_H_
 
 
-#include <stdio.h>
-#include <stdlib.h>
+#include <stdio.h>   
+#include <stdlib.h> 
 #include "glist.h"
 #include "btree.h"
 
 typedef struct _Simbolo {
-    BTree simbolo;
-    struct _Simbolo *sig;
+  BTree simbolo;
+  struct _Simbolo *sig;
 } Simbolo;
 
 typedef Simbolo *Pila;
