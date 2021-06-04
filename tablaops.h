@@ -27,7 +27,7 @@ void cargar_operador(TablaOps *tabla, char *simbolo, int aridad,
 
 int es_operador(TablaOps tabla, char *simbolo);
 
-
+FuncionEvaluacion buscar_operador(TablaOps tabla, char *simbolo);
 
 
 #endif /** __TABLAOPS_H__ */

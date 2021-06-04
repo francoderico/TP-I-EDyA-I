@@ -23,20 +23,20 @@ BTree crear_arbol_operaciones(TablaOps tabla, char *expresion)
 			aux = strcat(aux, *p);
 		}
 		else if(!es_operador(tabla, aux)){
-			apilar(pila, btree_unir(aux, NULL, NULL));
+			pila = apilar(pila, btree_unir(aux, NULL, NULL));
 		}
 		else if (es_operador(tabla, aux) == 1){
 			aux1 = pila->simbolo;
-			desapilar(pila);
-			apilar(pila, btree_unir(aux, aux1, NULL));	
+			pila = desapilar(pila);
+			pila = apilar(pila, btree_unir(aux, aux1, NULL));	
 			aux = "";
 		}
 		else if(es_operador(tabla,aux)== 2){
 		aux1 = pila->simbolo;
-		desapilar(pila);
+		pila = desapilar(pila);
 		aux2 = pila->simbolo;
-		desapilar(pila);
-		apilar(pila, btree_unir(aux, aux2, aux1));
+		pila = desapilar(pila);
+		pila = apilar(pila, btree_unir(aux, aux2, aux1));
 		aux = "";
 		}
 		p++;
@@ -102,7 +102,24 @@ void imprimir(BTree arbol){
 	}
 }
 
+//Funcion que devuelve la evaluacion de un arbol de operaciones.
 
 
+int evaluar(BTree arbol, TablaOps tabla){
+	int resultado;
+	if (es_operador(tabla, arbol->dato) > 0){
+		FuncionEvaluacion funcion = buscar_operador(tabla, arbol->dato);
+		int operandos[2];
+		operandos[0] = evaluar(arbol->left, tabla);
+		if (arbol->right){
+			operandos[1] = evaluar(arbol->right, tabla);
+		}
+		resultado = funcion(operandos);
+	}
+	else{
+		resultado = atoi(arbol->dato);
+	}
+	return resultado;   // Lo retorna, no lo imprime. Despues habra que hacer un printf aparte sino se enquilombaba todo con la recursion.
+}
 
 

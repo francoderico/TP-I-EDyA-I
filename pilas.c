@@ -8,17 +8,19 @@ Pila pila_crear(){
 return NULL;
 }
 
-void apilar(Pila pila, BTree simbolo){
+Pila apilar(Pila pila, BTree simbolo){
 	Simbolo *nuevoSimbolo = malloc(sizeof(Simbolo));
 	nuevoSimbolo->simbolo = simbolo;
 	nuevoSimbolo->sig = pila;
+	return nuevoSimbolo;
 }
 
-void desapilar(Pila pila){
+Pila desapilar(Pila pila){
 	Simbolo *temp = pila;
 	pila->simbolo = pila->sig->simbolo;
 	pila->sig = pila->sig->sig;
 	free(temp);
+	return pila;
 }
 
 void destruir(Pila pila){
