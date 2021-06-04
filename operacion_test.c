@@ -6,6 +6,7 @@
 #include "struct_operador.h"
 #include "operadores.h"
 #include "operacion.h"
+#include "glist.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -119,7 +120,7 @@ int main()
     
     
     
-    char *alias;
+    char* alias = malloc(sizeof(char) * 30);
             
     scanf("%s", alias);
     
@@ -127,8 +128,6 @@ int main()
     
     arbol_operaciones_imprimir((BTree)top(otra->pila));
     printf("\n");
-    
-    
     
     
     
