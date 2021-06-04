@@ -167,6 +167,12 @@ int main() {
     sim[0] = '%';               //sim[1] = '\0';
 
     cargar_operador(&tabla, sim, 2, modulo);
+    
+    
+    sim[0] = '^';               //sim[1] = '\0';
+    
+    cargar_operador(&tabla, sim, 2, potencia);
+    
 
     free(sim);
 
@@ -189,12 +195,28 @@ int main() {
     char* expr = malloc(sizeof(char) * 200);
     
     //expr = strcpy(expr, "5 7 + 8 -"); //No da error de memoria ni de free
+    //arbol_operaciones_imprimir: 
     
     //expr = strcpy(expr, "4 8 + --"); //No da error de memoria ni de free
+    //arbol_operaciones_imprimir: 
     
-    //expr = strcpy(expr, "4 8 + 5 + 6 +"); //No da error de memoria ni de free
+    //expr = strcpy(expr, "4 8 + 5 + 6 + --"); //No da error de memoria ni de free
+    //arbol_operaciones_imprimir: 
     
-    expr = strcpy(expr, "4 8 + 5 + 6 + 9 +"); //No da error de memoria ni de free
+    //expr = strcpy(expr, "4 8 + 5 + 6 + 9 +"); //No da error de memoria ni de free
+    //arbol_operaciones_imprimir: 
+    
+    //expr = strcpy(expr, "3 3 + 4 8 + 5 9 + 6 + * 2 - % --"); //No da error de memoria ni de free
+    //arbol_operaciones_imprimir: 
+    
+    //expr = strcpy(expr, "2 3 + 4 5 + *"); //No da error de memoria ni de free
+    //arbol_operaciones_imprimir: 
+    
+    //expr = strcpy(expr, "2 3 * 4 5 * ^"); //No da error de memoria ni de free
+    //arbol_operaciones_imprimir: 
+    
+    expr = strcpy(expr, "2 3 * 4 5 % /");
+    //arbol_operaciones_imprimir: 2 * 3 / 4 % 5
     
     printf("%s\n", expr);
     
@@ -227,6 +249,8 @@ int main() {
     printf("\n");
     
     
+    arbol_operaciones_imprimir(arbol);
+    printf("\n");
     
     
     

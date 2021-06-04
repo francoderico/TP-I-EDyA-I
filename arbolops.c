@@ -272,7 +272,10 @@ Pila crear_arbol_operaciones2(TablaOps tabla, char *p)
 //Determina la precedencia de un operador. 
 //¿En donde entra el modulo? 
 
-int precedencia(char *operador) {
+
+/*
+int precedencia(void *dato)
+{
     int p;
     if (!strcmp(operador, "+") || !strcmp(operador, "-")
         || !strcmp(operador, "--")) {
@@ -286,12 +289,51 @@ int precedencia(char *operador) {
     }
     return p;
 }
+*/
+
+
+int precedencia(BTree arbol)
+{
+    int p;
+    
+    if(arbol == NULL || (arbol->left == NULL && arbol->right == NULL))
+    {
+        p = 5;
+    }
+    else
+    {
+        char* simbolo = ((Operador*)(arbol->dato))->simbolo;
+        
+        if(strcmp(simbolo, "+") == 0 || strcmp(simbolo, "-") == 0)
+        {
+            p = 0;
+        }
+        else if(strcmp(simbolo, "--") == 0)
+        {
+            p = 1;
+        }
+        else if(strcmp(simbolo, "*") == 0 || strcmp(simbolo, "/") == 0 || strcmp(simbolo, "%") == 0)
+        {
+            p = 2;
+        }
+        else if(strcmp(simbolo, "^") == 0)
+        {
+            p = 3;
+        }
+        else
+        {
+            p = 4;
+        }
+    }
+    
+    return p;
+}
 
 
 
 
 //Imprime a partir de un arbol, la expresión aritmética en inorden.
-
+/*
 void imprimir(BTree arbol) {
     if (arbol != NULL) {
         if (precedencia(arbol->dato) > precedencia(arbol->left->dato)) {
@@ -319,6 +361,56 @@ void imprimir(BTree arbol) {
         }
     }
 }
+* */
+
+
+
+
+void arbol_operaciones_imprimir(BTree arbol) {
+    if (arbol != NULL)
+    {
+        if(arbol->left == NULL && arbol->right == NULL)
+        {
+            printf("%d", *(int*)(arbol->dato));
+        }
+        else
+        {
+            if(((Operador*)(arbol->dato))->aridad == 2)
+            {
+                if(precedencia(arbol) > precedencia(arbol->left))
+                {
+                    printf("(");
+                    arbol_operaciones_imprimir(arbol->left);
+                    printf(")");
+                }
+                else
+                {
+                    arbol_operaciones_imprimir(arbol->left);
+                }
+            }
+            
+            printf(" %s ", ((Operador*)(arbol->dato))->simbolo);
+            
+            if(precedencia(arbol) > precedencia(arbol->right))
+            {
+                printf("(");
+                arbol_operaciones_imprimir(arbol->right);
+                printf(")");
+            }
+            else
+            {
+                arbol_operaciones_imprimir(arbol->right);
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
 
 //Funcion que devuelve la evaluacion de un arbol de operaciones.
 

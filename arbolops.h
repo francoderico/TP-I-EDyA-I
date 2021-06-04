@@ -11,9 +11,9 @@ Pila crear_arbol_operaciones(TablaOps tabla, char *p);
 
 Pila crear_arbol_operaciones2(TablaOps tabla, char *p);
 
-int precedencia(char *operador);
+int precedencia(BTree arbol);
 
-void imprimir(BTree arbol);
+void arbol_operaciones_imprimir(BTree arbol);
 
 int evaluar(BTree arbol, TablaOps tabla);
 
