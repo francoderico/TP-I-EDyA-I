@@ -8,10 +8,7 @@
  * un puntero al nodo raiz del subarbol leftuierdo (left),
  * y un puntero al nodo raiz del subarbol rightecho (right).
  */
-//struct _BST_Nodo {
-  //void *dato;
-  //struct _BST_Nodo *left, *right;
-//};
+
 
 /**
  * bstee_crear: Retorna un arbol de busqueda binaria vacio
