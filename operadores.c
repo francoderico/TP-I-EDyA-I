@@ -39,14 +39,14 @@ int producto(int *args) {
  * Devuelve la división entera entre 2 números.
  * */
 int division(int *args) {
-    
-    if(args[1] == 0)
-    {
-        printf("¡Usted está dividiendo por 0! Esto es matemáticamente incorrecto.\n");
-        
-        return 2147483647;  //2^31 - 1, el mayor int posible
+
+    if (args[1] == 0) {
+        printf
+            ("¡Usted está dividiendo por 0! Esto es matemáticamente incorrecto.\n");
+
+        return 2147483647;      //2^31 - 1, el mayor int posible
     }
-    
+
     return args[0] / args[1];
 }
 
@@ -62,19 +62,17 @@ int modulo(int *args) {
 /*
  * Devuelve el resultado de elevar un número al segundo.
  * */
-int potencia(int *args)
-{
+int potencia(int *args) {
     int ret = 1;
-    
-    for(int i = 0; i < args[1]; i ++)
-    {
+
+    for (int i = 0; i < args[1]; i++) {
         ret *= args[0];
     }
-    
-    if(args[0] == 0 && args[1] == 0)
-    {
-        printf("¡Usted está elevando 0 a la 0! Esto es matemáticamente incorrecto.\n");
+
+    if (args[0] == 0 && args[1] == 0) {
+        printf
+            ("¡Usted está elevando 0 a la 0! Esto es matemáticamente incorrecto.\n");
     }
-    
+
     return ret;
 }

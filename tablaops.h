@@ -18,16 +18,16 @@ int tablaOps_vacia(TablaOps tabla);
 
 TablaOps tablaOps_agregar_inicio(TablaOps tabla, Operador * data);
 
-int tablaOps_buscar(TablaOps tabla, Operador *data);
+int tablaOps_buscar(TablaOps tabla, Operador * data);
 
 void tablaOps_recorrer(TablaOps tabla, FuncionVisitante visitar);
 
-void cargar_operador(TablaOps *tabla, char *simbolo, int aridad,
+void cargar_operador(TablaOps * tabla, char *simbolo, int aridad,
                      FuncionEvaluacion eval);
 
 int es_operador(TablaOps tabla, char *simbolo);
 
-Operador* buscar_operador(TablaOps tabla, char *simbolo);
+Operador *buscar_operador(TablaOps tabla, char *simbolo);
 
 
 #endif /** __TABLAOPS_H__ */

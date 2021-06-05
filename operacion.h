@@ -15,7 +15,7 @@
  * */
 typedef struct _Operacion {
     char *alias;
-    Pila pila;             
+    Pila pila;
     int resultado;
 } Operacion;
 
@@ -23,7 +23,7 @@ typedef struct _Operacion {
  * Crea una nueva operación con los parámetros dados.
  * */
 //Operacion *operacion_crear(char *alias, BTree arbol, int resultado, FuncionCopia copia);
-Operacion* operacion_crear(char *alias, char *expr, TablaOps tabla);
+Operacion *operacion_crear(char *alias, char *expr, TablaOps tabla);
 
 /*
  * Crea una copia física de la operación.
@@ -54,7 +54,7 @@ void operacion_imprimir(Operacion * op);
  * Destruye la operación, liberando la memoria dinámica.
  * */
 //void operacion_destruir(Operacion * op, FuncionDestructora2 destruir);
-void operacion_destruir(Operacion *op);
+void operacion_destruir(Operacion * op);
 
 
 

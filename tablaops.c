@@ -71,18 +71,15 @@ void cargar_operador(TablaOps * tabla, char *simbolo, int aridad,
 
 //Determina si un símbolo es operador o no.
 
-int es_operador(TablaOps tabla, char *simbolo)
-{
-    if(tabla == NULL)
-    {
+int es_operador(TablaOps tabla, char *simbolo) {
+    if (tabla == NULL) {
         return 0;
     }
-    
-    if(strcmp(((Operador*)(tabla->dato))->simbolo, simbolo) == 0)
-    {
+
+    if (strcmp(((Operador *) (tabla->dato))->simbolo, simbolo) == 0) {
         return 1;
     }
-    
+
     return es_operador(tabla->sig, simbolo);
 }
 
@@ -90,12 +87,10 @@ int es_operador(TablaOps tabla, char *simbolo)
 
 //Busca un operador en una tabla de operadores, y lo devuelve.
 
-Operador* buscar_operador(TablaOps tabla, char *simbolo)
-{
-    if(strcmp(((Operador*)(tabla->dato))->simbolo, simbolo) == 0)
-    {
-        return (Operador*)(tabla->dato);
+Operador *buscar_operador(TablaOps tabla, char *simbolo) {
+    if (strcmp(((Operador *) (tabla->dato))->simbolo, simbolo) == 0) {
+        return (Operador *) (tabla->dato);
     }
-    
+
     return buscar_operador(tabla->sig, simbolo);
 }

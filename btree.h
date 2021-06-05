@@ -13,7 +13,7 @@ typedef enum {
 
 
 typedef struct _BTNodo {
-    void* dato;
+    void *dato;
     struct _BTNodo *left;
     struct _BTNodo *right;
 } BTNodo;

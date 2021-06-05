@@ -4,12 +4,14 @@
 #include "typedefs.h"
 #include "btree.h"
 
-typedef void (*FuncionVisitanteExtra)(void *dato, void *extra);
+typedef void (*FuncionVisitanteExtra) (void *dato, void *extra);
 
 typedef enum {
-  BTREE_RECORRIDO_IN_BS,  /** Inorden */
-  BTREE_RECORRIDO_PRE_BS, /** Preorden */
-  BTREE_RECORRIDO_POST_BS /** Postorden */
+    BTREE_RECORRIDO_IN_BS,/** Inorden */
+    BTREE_RECORRIDO_PRE_BS,
+                          /** Preorden */
+    BTREE_RECORRIDO_POST_BS
+                          /** Postorden */
 } BSTreeRecorrido;
 
 //typedef struct _BST_Nodo *BSTree;
@@ -29,7 +31,7 @@ void bstree_destruir(BSTree, FuncionDestructora);
 /**
  * Retorna 1 si el dato se encuentra y 0 en caso contrario.
  */
-void* bstree_buscar(BSTree, void *, FuncionComparadora);
+void *bstree_buscar(BSTree, void *, FuncionComparadora);
 
 /**
  * Inserta un dato no repetido en el arbol, manteniendo la propiedad del arbol
@@ -43,4 +45,4 @@ BSTree bstree_insertar(BSTree, void *, FuncionCopia, FuncionComparadora);
 void bstree_recorrer(BSTree, BSTreeRecorrido, FuncionVisitanteExtra,
                      void *extra);
 
-#endif //__BSTREE_H__
+#endif                          //__BSTREE_H__

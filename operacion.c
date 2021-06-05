@@ -11,25 +11,23 @@
  * */
 
 
-Operacion* operacion_crear(char *alias, char *expr, TablaOps tabla)
-{
+Operacion *operacion_crear(char *alias, char *expr, TablaOps tabla) {
     Operacion *nuevo = malloc(sizeof(Operacion));
 
     nuevo->alias = malloc(sizeof(char) * (strlen(alias) + 1));
     strcpy(nuevo->alias, alias);
-    
+
     nuevo->pila = crear_arbol_operaciones(tabla, expr);
-    
+
     return nuevo;
 }
 
 
-void operacion_destruir(Operacion *op)
-{
+void operacion_destruir(Operacion * op) {
     free(op->alias);
-    
+
     pila_destruir(op->pila, btree_destruir_operador_o_int);
-    
+
     free(op);
 }
 
@@ -46,7 +44,3 @@ void operacion_destruir(Operacion *op)
 int operacion_comparar(Operacion * op1, Operacion * op2) {
     return strcmp(op1->alias, op2->alias);
 }
-
-
-
-
