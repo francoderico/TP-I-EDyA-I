@@ -70,9 +70,9 @@ void operacion_destruir(Operacion *op)
  * 0 si op1->alias == op2->alias,
  * 1 si op1->alias > op2->alias.
  * */
-//int operacion_comparar(Operacion * op1, Operacion * op2) {
-    //return strcmp(op1->alias, op2->alias);
-//}
+int operacion_comparar(Operacion * op1, Operacion * op2) {
+    return strcmp(op1->alias, op2->alias);
+}
 
 
 
