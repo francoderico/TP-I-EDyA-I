@@ -4,7 +4,7 @@ Integrantes: De Rico, Franco.
              
 Dificultades encontradas:
 Elegir una estructura de datos para usar como auxiliar en la función armar_arbol_operaciones. Elegimos la pila ya que, al estar la expresión escrita en notación
-postfija, un operador solo tendá de hijo al último (o los dos últimos) subárbol que se agregó a la estructura. 
+postfija, un operador solo tendá de hijo al último (o los dos últimos) subárbol que se agregó a la estructura. Tambièn tuvimos algunos problemas con la gestión de la memoria.
 
 Ejemplo de compilación:
 
