@@ -8,7 +8,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-
+#include "pilas.h"
+#include "btree.h"
 
 
 int comparar_string_operacion(void *s, void *op)
@@ -136,7 +137,7 @@ void interpretar(TablaOps *tabla)
                 alias[j-(i+1)] = palabra[j];
             }
             
-            alias[j-(i+1)] = '\0';
+            alias[j-i] = '\0';
             
             Operacion* op = (Operacion*)bstree_buscar(arbolExp, (void*)alias, comparar_string_operacion);
             
@@ -146,9 +147,9 @@ void interpretar(TablaOps *tabla)
             
             free(alias);
             
-            operacion_destruir(op);
+            //operacion_destruir(op);
             
-            free(nueva);
+            //free(nueva);
         }
         if(strcmp(nueva, "evaluar") == 0)
         {
@@ -161,7 +162,7 @@ void interpretar(TablaOps *tabla)
                 alias[j-(i+1)] = palabra[j];
             }
             
-            alias[j-(i+1)] = '\0';
+            alias[j-i] = '\0';
             
             Operacion* op = (Operacion*)bstree_buscar(arbolExp, (void*)alias, comparar_string_operacion);
             
@@ -169,9 +170,9 @@ void interpretar(TablaOps *tabla)
             
             free(alias);
             
-            operacion_destruir(op);
+            //operacion_destruir(op);
             
-            free(nueva);
+           // free(nueva);
         }
         else
         {
@@ -191,7 +192,7 @@ void interpretar(TablaOps *tabla)
                 expr[j-(i+1)] = palabra[j];
             }
             
-            expr[j-(i+1)] = '\0';
+            expr[j-i] = '\0';
             
             Operacion* op = operacion_crear(alias, expr, *tabla);
             
