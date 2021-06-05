@@ -237,7 +237,63 @@ void arbol_operaciones_imprimir(BTree arbol) {
     }
 }
 
-
+/*
+char* arbol_operaciones_string(BTree arbol, char* ret) {
+    
+    if(arbol == NULL)
+    {
+        printf("La operación es vacía.");
+    }
+    else
+    {
+        char* ret = malloc(sizeof(char) * 400);
+        
+        if(arbol->left == NULL && arbol->right == NULL)
+        {
+            //printf("%d", *(int*)(arbol->dato));
+            
+            char c = ('0' + *(int*)(arbol->dato));
+            
+            
+            
+            ret = strcat(ret, 
+        }
+        else
+        {
+            if(((Operador*)(arbol->dato))->aridad == 2)
+            {
+                if(precedencia(arbol) > precedencia(arbol->left))
+                {
+                    printf("(");
+                    arbol_operaciones_imprimir(arbol->left);
+                    printf(")");
+                }
+                else
+                {
+                    arbol_operaciones_imprimir(arbol->left);
+                }
+                
+                printf(" %s ", ((Operador*)(arbol->dato))->simbolo);
+            }
+            else
+            {
+                printf("%s", ((Operador*)(arbol->dato))->simbolo);
+            }
+            
+            if(precedencia(arbol) > precedencia(arbol->right))
+            {
+                printf("(");
+                arbol_operaciones_imprimir(arbol->right);
+                printf(")");
+            }
+            else
+            {
+                arbol_operaciones_imprimir(arbol->right);
+            }
+        }
+    }
+}
+*/
 
 
 
