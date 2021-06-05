@@ -93,7 +93,7 @@ void interpretar(TablaOps *tabla)
 {
     char* palabra = malloc(sizeof(char) * 200);
     
-    BSTree arbolExpr = bstree_crear();
+    BSTree arbolExp = bstree_crear();
     
     printf("¡Hola! Ingrese un comando: ");
     
@@ -217,7 +217,7 @@ void interpretar(TablaOps *tabla)
     
     free(palabra);
     
-    bstree_destruir(arbolExpr, f_operacion_destruir);
+    bstree_destruir(arbolExp, f_operacion_destruir);
 }
 
 
