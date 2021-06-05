@@ -57,7 +57,7 @@ void no_destruir(void *dato)
     return;
 }
 
-
+//Crea un arbol de operaciones a partir de una expresión.
 
 Pila crear_arbol_operaciones(TablaOps tabla, char *p)
 {
@@ -146,7 +146,7 @@ Pila crear_arbol_operaciones(TablaOps tabla, char *p)
 
 
 
-
+//Define la precedencia de un operador (u operando).
 
 
 int precedencia(BTree arbol)
@@ -187,7 +187,7 @@ int precedencia(BTree arbol)
 }
 
 
-
+//Imprime un arbol de operaciones en notación infija.
 
 void arbol_operaciones_imprimir(BTree arbol) {
     
@@ -238,6 +238,8 @@ void arbol_operaciones_imprimir(BTree arbol) {
 }
 
 
+//Devuelve el resultado de evaluar un árbol de operaciones.
+
 int arbol_operaciones_evaluar(BTree arbol, int *args) {
     
     if(arbol == NULL)
@@ -271,6 +273,8 @@ int arbol_operaciones_evaluar(BTree arbol, int *args) {
         }
     }
 }
+
+
 
 
 void destruir_operador_o_int(BTNodo nodo)
