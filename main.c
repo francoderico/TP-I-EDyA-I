@@ -23,10 +23,6 @@ int f_operacion_comparar(void *op1, void *op2)
     return operacion_comparar((Operacion*)op1, (Operacion*)op2);
 }
 
-//void* f_operacion_copiar(void *op)
-//{
-    //return operacion_copiar((Operacion*)op);
-//}
 
 void* operacion_identidad(void *op)
 {
@@ -63,31 +59,31 @@ void cargar(TablaOps *tabla)
 
 
     sim[0] = '-';
-    //sim[1] = '\0';
+    
 
     cargar_operador(tabla, sim, 2, resta);
 
 
     sim[0] = '*';
-    //sim[1] = '\0';
+    
 
     cargar_operador(tabla, sim, 2, producto);
 
 
     sim[0] = '/';
-    //sim[1] = '\0';
+   
 
     cargar_operador(tabla, sim, 2, division);
 
 
     sim[0] = '%';
-    //sim[1] = '\0';
+    
 
     cargar_operador(tabla, sim, 2, modulo);
     
     
     sim[0] = '^';
-    //sim[1] = '\0';
+   
     
     cargar_operador(tabla, sim, 2, potencia);
     
@@ -148,7 +144,6 @@ void interpretar(TablaOps *tabla)
             
             free(alias);
             
-            //operacion_destruir(op);
             
             free(nueva);
         }
@@ -177,10 +172,6 @@ void interpretar(TablaOps *tabla)
         {
             char* alias = nueva;
             
-            //if(bstree_buscar(arbolExp, (void*)alias, comparar_string_operacion) != NULL)
-            //{
-                
-            //}
             
             char* expr = malloc(sizeof(char) * 200);
             
@@ -208,8 +199,7 @@ void interpretar(TablaOps *tabla)
             
             
             free(alias);
-            
-            //operacion_destruir(op);
+  
             
             free(expr);
         }
