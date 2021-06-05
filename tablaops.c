@@ -55,6 +55,9 @@ void tablaOps_recorrer(TablaOps tabla, FuncionVisitante visitar) {
     glist_recorrer(tabla, visitar);
 }
 
+
+//Carga un operador en una tabla de operadores.
+
 void cargar_operador(TablaOps * tabla, char *simbolo, int aridad,
                      FuncionEvaluacion eval) {
     Operador *nuevo = operador_crear(simbolo, aridad, eval);
@@ -66,7 +69,7 @@ void cargar_operador(TablaOps * tabla, char *simbolo, int aridad,
 
 
 
-
+//Determina si un símbolo es operador o no.
 
 int es_operador(TablaOps tabla, char *simbolo)
 {
@@ -85,7 +88,7 @@ int es_operador(TablaOps tabla, char *simbolo)
 
 
 
-
+//Busca un operador en una tabla de operadores, y lo devuelve.
 
 Operador* buscar_operador(TablaOps tabla, char *simbolo)
 {
