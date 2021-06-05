@@ -8,8 +8,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "pilas.h"
-#include "btree.h"
+
 
 
 int comparar_string_operacion(void *s, void *op)
@@ -137,22 +136,21 @@ void interpretar(TablaOps *tabla)
                 alias[j-(i+1)] = palabra[j];
             }
             
-            alias[j-i] = '\0';
+            alias[j-(i+1)] = '\0';
             
             Operacion* op = (Operacion*)bstree_buscar(arbolExp, (void*)alias, comparar_string_operacion);
             
             BTree arbol = (BTree)top(op->pila);
             
             arbol_operaciones_imprimir(arbol);
-            printf("\n");
             
             free(alias);
             
-            //operacion_destruir(op);
+            operacion_destruir(op);
             
-            //free(nueva);
+            free(nueva);
         }
-        else if(strcmp(nueva, "evaluar") == 0)
+        if(strcmp(nueva, "evaluar") == 0)
         {
             char* alias = malloc(sizeof(char) * 200);
             
@@ -163,23 +161,17 @@ void interpretar(TablaOps *tabla)
                 alias[j-(i+1)] = palabra[j];
             }
             
-            alias[j-i] = '\0';
+            alias[j-(i+1)] = '\0';
             
             Operacion* op = (Operacion*)bstree_buscar(arbolExp, (void*)alias, comparar_string_operacion);
             
-            int* args = malloc(sizeof(int) * 2);
-            
-            int resultado = arbol_operaciones_evaluar((BTree)top(op->pila), args);
-            
-            printf("%d\n", resultado);
-             
-            free(args);
+            printf("%d\n", op->resultado);
             
             free(alias);
             
-            //operacion_destruir(op);
+            operacion_destruir(op);
             
-           // free(nueva);
+            free(nueva);
         }
         else
         {
@@ -192,18 +184,14 @@ void interpretar(TablaOps *tabla)
             
             char* expr = malloc(sizeof(char) * 200);
             
-            i += 9;
-            
             int j = i+1;
-            
-            printf("palabra en j es %c\n", palabra[j]);
             
             for(; palabra[j] != '\0'; j ++)
             {
                 expr[j-(i+1)] = palabra[j];
             }
             
-            expr[j-i] = '\0';
+            expr[j-(i+1)] = '\0';
             
             Operacion* op = operacion_crear(alias, expr, *tabla);
             
@@ -244,7 +232,92 @@ int main() {
 
     cargar(&tabla);
     
-    interpretar(&tabla);
+    //interpretar(&tabla);
+    
+    
+    
+    char* palabra = malloc(sizeof(char) * 200);
+    
+    BSTree arbolExp = bstree_crear();
+    
+    printf("¡Hola! Ingrese un comando: ");
+    
+    char C;
+    int i = 0;
+    
+    while((C = getchar()) != '\n')
+    {
+        palabra[i] = C;
+        
+        i ++;
+    }
+    
+    palabra[i] = '\0';
+    
+    
+    
+    char* nueva = malloc(sizeof(char) * 200);
+        
+    for(i = 0; palabra[i] != '\0' && palabra[i] != ' '; i ++)
+    {
+        nueva[i] = palabra[i];
+    }
+    
+    nueva[i] = '\0';
+    
+    
+    
+    char* alias = nueva;
+            
+    //if(bstree_buscar(arbolExp, (void*)alias, comparar_string_operacion) != NULL)
+    //{
+        
+    //}
+    
+    char* expr = malloc(sizeof(char) * 200);
+    
+    int j = i+1;
+    
+    for(; palabra[j] != '\0'; j ++)
+    {
+        expr[j-(i+1)] = palabra[j];
+    }
+    
+    expr[j-(i+1)] = '\0';
+    
+    Operacion* op = operacion_crear(alias, expr, tabla); //¡OJO! Poner *tabla (creo)
+    
+    int* args = malloc(sizeof(int) * 2);
+    
+    //printf("El resultado es %d\n", arbol_operaciones_evaluar((BTree)top(op->pila), args));
+    
+    op->resultado = arbol_operaciones_evaluar((BTree)top(op->pila), args);
+    
+    printf("El resultado es %d\n", op->resultado);
+    
+    free(args);
+    
+    
+    
+    arbol_operaciones_imprimir((BTree)top(op->pila));
+    printf("\n");
+    
+    
+    
+    
+    arbolExp = bstree_insertar(arbolExp, (void*)op, operacion_identidad, f_operacion_comparar);
+    
+    //Pila pila = pila_crear();
+    
+    //pila = push(pila, arbolExp->dato, operacion_identidad);
+    
+    free(alias);
+    
+    free(expr);
+    
+    //pila_destruir(pila, btree_destruir_operador_o_int);
+    
+    operacion_destruir((Operacion*)(arbolExp->dato));
     
     
     return 0;

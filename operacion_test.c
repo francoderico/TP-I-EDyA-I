@@ -119,9 +119,9 @@ int main()
     
     
     
-    char *alias;
+    char* alias = malloc(sizeof(char) * 200);
             
-    scanf("%s", alias);
+    strcpy(alias, "hola");
     
     Operacion* otra = bstree_buscar(arbolExp, alias, comparar_string_operacion);
     
@@ -129,12 +129,20 @@ int main()
     printf("\n");
     
     
+    free(alias);
+    
     
     
     
     operacion_destruir(op);
     
     tablaOps_destruir(tabla);
+    
+    
+    //btree_destruir(arbolExp, btree_destruir_operador_o_int);
+    
+    
+
     
     
     return 0;

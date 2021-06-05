@@ -5,13 +5,13 @@
 /**
  * Estructura del nodo del arbol de busqueda binaria.
  * Tiene un puntero al dato (dato),
- * un puntero al nodo raiz del subarbol izquierdo (izq),
- * y un puntero al nodo raiz del subarbol derecho (der).
+ * un puntero al nodo raiz del subarbol leftuierdo (left),
+ * y un puntero al nodo raiz del subarbol rightecho (right).
  */
-struct _BST_Nodo {
-  void *dato;
-  struct _BST_Nodo *izq, *der;
-};
+//struct _BST_Nodo {
+  //void *dato;
+  //struct _BST_Nodo *left, *right;
+//};
 
 /**
  * bstee_crear: Retorna un arbol de busqueda binaria vacio
@@ -23,8 +23,8 @@ BSTree bstree_crear() { return NULL; }
  */
 void bstree_destruir(BSTree raiz, FuncionDestructora destr) {
   if (raiz != NULL) {
-    bstree_destruir(raiz->izq, destr);
-    bstree_destruir(raiz->der, destr);
+    bstree_destruir(raiz->left, destr);
+    bstree_destruir(raiz->right, destr);
     destr(raiz->dato);
     free(raiz);
   }
@@ -40,9 +40,9 @@ void* bstree_buscar(BSTree raiz, void *dato, FuncionComparadora comp) {
   else if (comp(dato, raiz->dato) == 0) // raiz->dato == dato
     return raiz->dato;
   else if (comp(dato, raiz->dato) < 0) // dato < raiz->dato
-    return bstree_buscar(raiz->izq, dato, comp);
+    return bstree_buscar(raiz->left, dato, comp);
   else // raiz->dato < dato
-    return bstree_buscar(raiz->der, dato, comp);
+    return bstree_buscar(raiz->right, dato, comp);
 }
 
 /**
@@ -52,15 +52,15 @@ void* bstree_buscar(BSTree raiz, void *dato, FuncionComparadora comp) {
 BSTree bstree_insertar(BSTree raiz, void *dato, FuncionCopia copia,
                        FuncionComparadora comp) {
   if (raiz == NULL) { // insertar el dato en un nuevo nodo
-    struct _BST_Nodo *nuevoNodo = malloc(sizeof(struct _BST_Nodo));
+    BTNodo *nuevoNodo = malloc(sizeof(BTNodo));
     assert(nuevoNodo != NULL);
     nuevoNodo->dato = copia(dato);
-    nuevoNodo->izq = nuevoNodo->der = NULL;
+    nuevoNodo->left = nuevoNodo->right = NULL;
     return nuevoNodo;
   } else if (comp(dato, raiz->dato) < 0) // dato < raiz->dato
-    raiz->izq = bstree_insertar(raiz->izq, dato, copia, comp);
+    raiz->left = bstree_insertar(raiz->left, dato, copia, comp);
   else if (comp(dato, raiz->dato) > 0) // raiz->dato < dato
-    raiz->der = bstree_insertar(raiz->der, dato, copia, comp);
+    raiz->right = bstree_insertar(raiz->right, dato, copia, comp);
   // si el dato ya se encontraba, no es insertado
   return raiz;
 }
@@ -73,10 +73,10 @@ void bstree_recorrer(BSTree raiz, BSTreeRecorrido orden,
   if (raiz != NULL) {
     if (orden == BTREE_RECORRIDO_PRE_BS)
       visita(raiz->dato, extra);
-    bstree_recorrer(raiz->izq, orden, visita, extra);
+    bstree_recorrer(raiz->left, orden, visita, extra);
     if (orden == BTREE_RECORRIDO_IN_BS)
       visita(raiz->dato, extra);
-    bstree_recorrer(raiz->der, orden, visita, extra);
+    bstree_recorrer(raiz->right, orden, visita, extra);
     if (orden == BTREE_RECORRIDO_POST_BS)
       visita(raiz->dato, extra);
   }

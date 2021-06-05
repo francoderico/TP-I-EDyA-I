@@ -4,6 +4,10 @@
 main: main.c arbolops.o btree.o bstree.o glist.o operacion.o operadores.o pilas.o struct_operador.o tablaops.o
 	$(CC) -o $@ $^
 
+#operacion_test: operacion_test.c arbolops.o btree.o bstree.o glist.o operacion.o operadores.o pilas.o struct_operador.o tablaops.o
+#	$(CC) -o $@ $^
+
+
 arbolops.o: arbolops.c
 	$(CC) -c $<
 

@@ -2,6 +2,7 @@
 #define __BSTREE_H__
 
 #include "typedefs.h"
+#include "btree.h"
 
 typedef void (*FuncionVisitanteExtra)(void *dato, void *extra);
 
@@ -11,7 +12,9 @@ typedef enum {
   BTREE_RECORRIDO_POST_BS /** Postorden */
 } BSTreeRecorrido;
 
-typedef struct _BST_Nodo *BSTree;
+//typedef struct _BST_Nodo *BSTree;
+
+typedef BTree BSTree;
 
 /**
  * Retorna un arbol de busqueda binaria vacio.
