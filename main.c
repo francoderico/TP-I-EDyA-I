@@ -166,7 +166,13 @@ void interpretar(TablaOps *tabla)
             
             Operacion* op = (Operacion*)bstree_buscar(arbolExp, (void*)alias, comparar_string_operacion);
             
-            printf("%d\n", op->resultado);
+            int* args = malloc(sizeof(int) * 2);
+            
+            int resultado = arbol_operaciones_evaluar((BTree)top(op->pila), args);
+            
+            printf("%d\n", resultado);
+             
+            free(args);
             
             free(alias);
             
