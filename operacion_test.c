@@ -6,7 +6,6 @@
 #include "struct_operador.h"
 #include "operadores.h"
 #include "operacion.h"
-#include "glist.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -120,7 +119,7 @@ int main()
     
     
     
-    char* alias = malloc(sizeof(char) * 30);
+    char *alias;
             
     scanf("%s", alias);
     
@@ -130,7 +129,9 @@ int main()
     printf("\n");
     
     
-    free(alias);
+    
+    
+    
     operacion_destruir(op);
     
     tablaOps_destruir(tabla);
