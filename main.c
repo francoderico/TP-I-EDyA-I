@@ -22,9 +22,14 @@ int f_operacion_comparar(void *op1, void *op2)
     return operacion_comparar((Operacion*)op1, (Operacion*)op2);
 }
 
-void* f_operacion_copiar(void *op)
+//void* f_operacion_copiar(void *op)
+//{
+    //return operacion_copiar((Operacion*)op);
+//}
+
+void* operacion_identidad(void *op)
 {
-    return operacion_copiar((Operacion*)op);
+    return op;
 }
 
 void f_operacion_destruir(void *op)
@@ -190,12 +195,12 @@ void interpretar(TablaOps *tabla)
             
             Operacion* op = operacion_crear(alias, expr, *tabla);
             
-            arbolExp = bstree_insertar(arbolExp, (void*)op, f_operacion_copiar, f_operacion_comparar);
+            arbolExp = bstree_insertar(arbolExp, (void*)op, operacion_identidad, f_operacion_comparar);
             
             
             free(alias);
             
-            operacion_destruir(op);
+            //operacion_destruir(op);
             
             free(expr);
         }
